@@ -1,0 +1,2306 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Executive Business Presentation | Q4 2025</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js">
+    </script>
+    <style>
+        :root {
+            --bg-primary: #080c14;
+            --bg-secondary: #0f1520;
+            --bg-card: rgba(18, 24, 38, 0.7);
+            --bg-card-solid: #121826;
+            --bg-sidebar: rgba(10, 15, 24, 0.85);
+            --border-subtle: rgba(255, 255, 255, 0.06);
+            --border-card: rgba(255, 255, 255, 0.1);
+            --text-primary: #e8ecf2;
+            --text-secondary: #9aa4b8;
+            --text-muted: #5f6b7c;
+            --accent: #4d8cf5;
+            --accent-glow: rgba(77, 140, 245, 0.3);
+            --accent-secondary: #6c5ce7;
+            --green: #10b981;
+            --green-glow: rgba(16, 185, 129, 0.3);
+            --amber: #f59e0b;
+            --amber-glow: rgba(245, 158, 11, 0.3);
+            --red: #ef4444;
+            --red-glow: rgba(239, 68, 68, 0.3);
+            --cyan: #06b6d4;
+            --purple: #a855f7;
+            --card-shadow: 0 4px 32px rgba(0, 0, 0, 0.4);
+            --card-shadow-hover: 0 8px 48px rgba(0, 0, 0, 0.55);
+            --glass-blur: blur(18px);
+            --radius-sm: 10px;
+            --radius: 16px;
+            --radius-lg: 20px;
+            --radius-xl: 24px;
+            --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --font-display: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+            --sidebar-width: 250px;
+            --topbar-height: 0px;
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #f1f5f9;
+            --bg-secondary: #e8edf3;
+            --bg-card: rgba(255, 255, 255, 0.65);
+            --bg-card-solid: #ffffff;
+            --bg-sidebar: rgba(248, 250, 252, 0.9);
+            --border-subtle: rgba(0, 0, 0, 0.05);
+            --border-card: rgba(0, 0, 0, 0.08);
+            --text-primary: #1a1f2e;
+            --text-secondary: #4a5568;
+            --text-muted: #8896a8;
+            --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+            --card-shadow-hover: 0 8px 36px rgba(0, 0, 0, 0.1);
+            --accent-glow: rgba(59, 130, 246, 0.2);
+            --green-glow: rgba(16, 185, 129, 0.2);
+            --amber-glow: rgba(245, 158, 11, 0.2);
+            --red-glow: rgba(239, 68, 68, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            font-size: 15px;
+            scroll-behavior: smooth;
+            height: 100%;
+            overflow: hidden;
+        }
+        body {
+            font-family: var(--font-display);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            height: 100vh;
+            display: flex;
+            overflow: hidden;
+            transition: background var(--transition-smooth), color var(--transition-smooth);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .bg-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.35;
+            pointer-events: none;
+            z-index: 0;
+            transition: all var(--transition-smooth);
+        }
+        .bg-orb--1 {
+            width: 500px;
+            height: 500px;
+            background: var(--accent-glow);
+            top: -15%;
+            right: -10%;
+        }
+        .bg-orb--2 {
+            width: 400px;
+            height: 400px;
+            background: var(--purple);
+            opacity: 0.18;
+            bottom: -12%;
+            left: -8%;
+        }
+        .bg-orb--3 {
+            width: 350px;
+            height: 350px;
+            background: var(--cyan);
+            opacity: 0.15;
+            top: 40%;
+            left: 50%;
+        }
+
+        .sidebar {
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: var(--bg-sidebar);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border-right: 1px solid var(--border-subtle);
+            display: flex;
+            flex-direction: column;
+            z-index: 100;
+            flex-shrink: 0;
+            transition: all var(--transition-smooth);
+            position: relative;
+        }
+        .sidebar__brand {
+            padding: 24px 22px 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        .sidebar__logo {
+            width: 36px;
+            height: 36px;
+            border-radius: var(--radius-sm);
+            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #fff;
+            flex-shrink: 0;
+            box-shadow: 0 4px 16px var(--accent-glow);
+        }
+        .sidebar__brand-text {
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            color: var(--text-primary);
+        }
+        .sidebar__brand-sub {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+        .sidebar__nav {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+        .sidebar__nav-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            position: relative;
+            letter-spacing: -0.01em;
+            border: 1px solid transparent;
+            background: transparent;
+            width: 100%;
+            text-align: left;
+            font-family: inherit;
+        }
+        .sidebar__nav-item:hover {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border-color: var(--border-card);
+        }
+        .sidebar__nav-item.active {
+            background: var(--bg-card);
+            color: var(--accent);
+            border-color: rgba(77, 140, 245, 0.3);
+            box-shadow: 0 2px 12px var(--accent-glow);
+            font-weight: 600;
+        }
+        .sidebar__nav-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: currentColor;
+            opacity: 0.5;
+            flex-shrink: 0;
+            transition: all var(--transition-fast);
+        }
+        .sidebar__nav-item.active .sidebar__nav-dot {
+            opacity: 1;
+            box-shadow: 0 0 10px currentColor;
+            animation: pulse-dot 2s infinite;
+        }
+        @keyframes pulse-dot {
+            0%,
+            100% {
+                box-shadow: 0 0 6px currentColor;
+            }
+            50% {
+                box-shadow: 0 0 16px currentColor, 0 0 24px currentColor;
+            }
+        }
+        .sidebar__footer {
+            padding: 14px 16px;
+            border-top: 1px solid var(--border-subtle);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .sidebar__btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 14px;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            font-size: 0.78rem;
+            font-weight: 500;
+            transition: all var(--transition-fast);
+            background: var(--bg-card);
+            border: 1px solid var(--border-card);
+            color: var(--text-secondary);
+            font-family: inherit;
+            width: 100%;
+            text-align: left;
+        }
+        .sidebar__btn:hover {
+            color: var(--text-primary);
+            border-color: var(--text-muted);
+            box-shadow: var(--card-shadow);
+        }
+        .sidebar__progress {
+            height: 3px;
+            background: var(--border-subtle);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 4px;
+        }
+        .sidebar__progress-fill {
+            height: 100%;
+            background: var(--accent);
+            border-radius: 10px;
+            transition: width var(--transition-smooth);
+            box-shadow: 0 0 8px var(--accent-glow);
+        }
+
+        .main {
+            flex: 1;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(18px);
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 32px 36px 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            scroll-behavior: smooth;
+        }
+        .slide.active {
+            opacity: 1;
+            pointer-events: all;
+            transform: translateY(0);
+        }
+        .slide__header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .slide__title {
+            font-size: 1.7rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            color: var(--text-primary);
+            line-height: 1.15;
+        }
+        .slide__subtitle {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+        }
+        .slide__badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            background: var(--green-glow);
+            color: var(--green);
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            white-space: nowrap;
+        }
+        .slide__badge.warning {
+            background: var(--amber-glow);
+            color: var(--amber);
+            border-color: rgba(245, 158, 11, 0.25);
+        }
+
+        .glass-card {
+            background: var(--bg-card);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--border-card);
+            border-radius: var(--radius-lg);
+            padding: 22px 24px;
+            box-shadow: var(--card-shadow);
+            transition: all var(--transition-fast);
+            position: relative;
+            overflow: hidden;
+        }
+        .glass-card:hover {
+            box-shadow: var(--card-shadow-hover);
+            border-color: rgba(255, 255, 255, 0.16);
+            transform: translateY(-1px);
+        }
+        [data-theme="light"] .glass-card:hover {
+            border-color: rgba(0, 0, 0, 0.13);
+        }
+        .glass-card__header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 14px;
+            gap: 10px;
+        }
+        .glass-card__title {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--text-muted);
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 16px;
+        }
+        .kpi-card {
+            background: var(--bg-card);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--border-card);
+            border-radius: var(--radius-lg);
+            padding: 20px 22px;
+            box-shadow: var(--card-shadow);
+            transition: all var(--transition-fast);
+            cursor: default;
+            position: relative;
+            overflow: hidden;
+        }
+        .kpi-card:hover {
+            box-shadow: var(--card-shadow-hover);
+            transform: translateY(-3px);
+        }
+        .kpi-card__icon {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        .kpi-card__icon.blue {
+            background: var(--accent-glow);
+            color: var(--accent);
+        }
+        .kpi-card__icon.green {
+            background: var(--green-glow);
+            color: var(--green);
+        }
+        .kpi-card__icon.amber {
+            background: var(--amber-glow);
+            color: var(--amber);
+        }
+        .kpi-card__icon.purple {
+            background: rgba(168, 85, 247, 0.2);
+            color: var(--purple);
+        }
+        .kpi-card__value {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: var(--text-primary);
+            font-variant-numeric: tabular-nums;
+            font-family: var(--font-mono);
+            line-height: 1;
+        }
+        .kpi-card__label {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-top: 4px;
+            letter-spacing: 0.02em;
+        }
+        .kpi-card__delta {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            margin-top: 6px;
+            padding: 3px 8px;
+            border-radius: 12px;
+        }
+        .kpi-card__delta.positive {
+            color: var(--green);
+            background: var(--green-glow);
+        }
+        .kpi-card__delta.negative {
+            color: var(--red);
+            background: var(--red-glow);
+        }
+
+        .chart-wrap {
+            position: relative;
+            width: 100%;
+            height: 300px;
+        }
+        .chart-wrap.large {
+            height: 380px;
+        }
+        .chart-wrap.small {
+            height: 240px;
+        }
+        .chart-wrap canvas {
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+        .grid-2-1 {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 16px;
+        }
+        .grid-1-2 {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 16px;
+        }
+
+        .funnel {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 0;
+        }
+        .funnel__step {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 14px 20px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 0.82rem;
+            color: #fff;
+            transition: all var(--transition-fast);
+            cursor: default;
+            min-width: 100px;
+            position: relative;
+        }
+        .funnel__step:nth-child(1) {
+            width: 100%;
+            background: var(--accent);
+        }
+        .funnel__step:nth-child(2) {
+            width: 78%;
+            background: #5b8def;
+        }
+        .funnel__step:nth-child(3) {
+            width: 56%;
+            background: #6c7de0;
+        }
+        .funnel__step:nth-child(4) {
+            width: 36%;
+            background: #7c6cd1;
+        }
+        .funnel__step:nth-child(5) {
+            width: 20%;
+            background: var(--accent-secondary);
+        }
+        .funnel__step:hover {
+            transform: scale(1.04);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+        }
+
+        .progress-group {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .progress-item {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .progress-item__header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.78rem;
+            font-weight: 500;
+        }
+        .progress-item__name {
+            color: var(--text-secondary);
+        }
+        .progress-item__val {
+            color: var(--text-primary);
+            font-weight: 600;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+        }
+        .progress-bar {
+            height: 8px;
+            border-radius: 10px;
+            background: var(--border-subtle);
+            overflow: hidden;
+        }
+        .progress-bar__fill {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+            background: var(--accent);
+            box-shadow: 0 0 8px var(--accent-glow);
+        }
+        .progress-bar__fill.green {
+            background: var(--green);
+            box-shadow: 0 0 8px var(--green-glow);
+        }
+        .progress-bar__fill.amber {
+            background: var(--amber);
+            box-shadow: 0 0 8px var(--amber-glow);
+        }
+
+        .filter-pills {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .filter-pill {
+            padding: 7px 16px;
+            border-radius: 20px;
+            font-size: 0.76rem;
+            font-weight: 500;
+            cursor: pointer;
+            border: 1px solid var(--border-card);
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            transition: all var(--transition-fast);
+            font-family: inherit;
+            white-space: nowrap;
+        }
+        .filter-pill:hover {
+            border-color: var(--text-muted);
+            color: var(--text-primary);
+        }
+        .filter-pill.active {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+            box-shadow: 0 2px 12px var(--accent-glow);
+        }
+
+        .toast-container {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            pointer-events: none;
+        }
+        .toast {
+            padding: 12px 20px;
+            border-radius: var(--radius-sm);
+            background: var(--bg-card-solid);
+            border: 1px solid var(--border-card);
+            box-shadow: var(--card-shadow-hover);
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            animation: slideInRight 0.35s cubic-bezier(0.4, 0, 0.2, 1), fadeOut 0.3s 2.2s forwards;
+            pointer-events: all;
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+        }
+        @keyframes slideInRight {
+            from {
+                transform: translateX(120%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                transform: translateY(-8px);
+            }
+        }
+
+        .insight-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-card);
+            border-radius: var(--radius-lg);
+            padding: 18px 20px;
+            transition: all var(--transition-fast);
+            cursor: default;
+            border-left: 3px solid var(--accent);
+            box-shadow: var(--card-shadow);
+        }
+        .insight-card:hover {
+            box-shadow: var(--card-shadow-hover);
+            transform: translateX(3px);
+        }
+        .insight-card.green {
+            border-left-color: var(--green);
+        }
+        .insight-card.amber {
+            border-left-color: var(--amber);
+        }
+        .insight-card__title {
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 4px;
+            color: var(--text-primary);
+        }
+        .insight-card__desc {
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+        }
+        .table-premium {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8rem;
+        }
+        .table-premium th {
+            text-align: left;
+            padding: 10px 14px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            font-size: 0.7rem;
+            border-bottom: 2px solid var(--border-card);
+        }
+        .table-premium td {
+            padding: 11px 14px;
+            border-bottom: 1px solid var(--border-subtle);
+            color: var(--text-primary);
+            font-weight: 500;
+            text-align: left;
+        }
+        .table-premium tr {
+            transition: background var(--transition-fast);
+        }
+        .table-premium tbody tr:hover {
+            background: var(--bg-card);
+        }
+        .status-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 6px;
+            vertical-align: middle;
+        }
+        .status-dot.on-track {
+            background: var(--green);
+            box-shadow: 0 0 8px var(--green-glow);
+        }
+        .status-dot.at-risk {
+            background: var(--amber);
+            box-shadow: 0 0 8px var(--amber-glow);
+        }
+
+        .contact-card {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px 24px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-card);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--card-shadow);
+        }
+        .contact-avatar {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: #fff;
+            flex-shrink: 0;
+        }
+
+        .skeleton {
+            background: linear-gradient(90deg, var(--border-subtle) 25%, var(--border-card) 50%, var(--border-subtle) 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: var(--radius-sm);
+        }
+        @keyframes shimmer {
+            0% {
+                background-position: -200% 0;
+            }
+            100% {
+                background-position: 200% 0;
+            }
+        }
+
+        /* ===== RTL SUPPORT (Arabic) ===== */
+        body[dir="rtl"] {
+            flex-direction: row-reverse;
+        }
+        body[dir="rtl"] .sidebar {
+            border-right: none;
+            border-left: 1px solid var(--border-subtle);
+        }
+        body[dir="rtl"] .sidebar__nav-item {
+            text-align: right;
+        }
+        body[dir="rtl"] .sidebar__btn {
+            text-align: right;
+        }
+        body[dir="rtl"] .table-premium th,
+        body[dir="rtl"] .table-premium td {
+            text-align: right;
+        }
+        body[dir="rtl"] .status-dot {
+            margin-right: 0;
+            margin-left: 6px;
+        }
+        body[dir="rtl"] .insight-card {
+            border-left: none;
+            border-right: 3px solid var(--accent);
+        }
+        body[dir="rtl"] .insight-card.green {
+            border-right-color: var(--green);
+        }
+        body[dir="rtl"] .insight-card.amber {
+            border-right-color: var(--amber);
+        }
+        body[dir="rtl"] .insight-card:hover {
+            transform: translateX(-3px);
+        }
+        body[dir="rtl"] .chart-wrap {
+            direction: ltr;
+        }
+        body[dir="rtl"] .kpi-card {
+            text-align: right;
+        }
+        body[dir="rtl"] .kpi-card__icon {
+            margin-left: auto;
+            margin-right: 0;
+        }
+        body[dir="rtl"] .slide__header {
+            flex-direction: row;
+        }
+        body[dir="rtl"] .toast-container {
+            right: auto;
+            left: 24px;
+        }
+        @keyframes slideInLeft {
+            from {
+                transform: translateX(-120%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        body[dir="rtl"] .toast {
+            animation: slideInLeft 0.35s cubic-bezier(0.4, 0, 0.2, 1), fadeOut 0.3s 2.2s forwards;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .sidebar {
+                width: 200px;
+                --sidebar-width: 200px;
+            }
+            .slide {
+                padding: 20px 18px 28px;
+            }
+            .grid-2,
+            .grid-2-1,
+            .grid-1-2 {
+                grid-template-columns: 1fr;
+            }
+            .grid-3 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .grid-4 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .kpi-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .slide__title {
+                font-size: 1.3rem;
+            }
+        }
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 60px;
+                --sidebar-width: 60px;
+            }
+            .sidebar__brand-text,
+            .sidebar__brand-sub,
+            .sidebar__nav-item span:not(.sidebar__nav-dot),
+            .sidebar__btn span {
+                display: none;
+            }
+            .sidebar__nav-item {
+                justify-content: center;
+                padding: 12px;
+            }
+            .sidebar__brand {
+                justify-content: center;
+                padding: 16px 8px;
+            }
+            .sidebar__footer {
+                align-items: center;
+            }
+            .sidebar__btn {
+                justify-content: center;
+                padding: 10px;
+            }
+            .slide {
+                padding: 14px 12px 20px;
+                gap: 14px;
+            }
+            .grid-3,
+            .grid-4 {
+                grid-template-columns: 1fr;
+            }
+            .kpi-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .slide__title {
+                font-size: 1.1rem;
+            }
+            .chart-wrap {
+                height: 220px;
+            }
+            .chart-wrap.large {
+                height: 260px;
+            }
+        }
+        @media (max-width: 480px) {
+            .sidebar {
+                width: 48px;
+                --sidebar-width: 48px;
+            }
+            .kpi-grid {
+                grid-template-columns: 1fr;
+            }
+            .kpi-card__value {
+                font-size: 1.6rem;
+            }
+            .slide {
+                padding: 10px 8px 16px;
+            }
+        }
+
+        /* ===== FULLSCREEN ===== */
+        body.fullscreen .sidebar {
+            width: 0;
+            overflow: hidden;
+            padding: 0;
+            border: none;
+            opacity: 0;
+            pointer-events: none;
+            --sidebar-width: 0px;
+        }
+        body.fullscreen .slide {
+            padding: 40px 50px;
+        }
+
+        /* ===== PRINT ===== */
+        @media print {
+            .sidebar {
+                display: none;
+            }
+            .slide {
+                position: relative !important;
+                opacity: 1 !important;
+                pointer-events: all !important;
+                transform: none !important;
+                page-break-after: always;
+                overflow: visible !important;
+            }
+            .bg-orb,
+            .toast-container {
+                display: none !important;
+            }
+            body {
+                overflow: visible !important;
+                height: auto !important;
+            }
+            .main {
+                overflow: visible !important;
+                height: auto !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-orb bg-orb--1"></div>
+    <div class="bg-orb bg-orb--2"></div>
+    <div class="bg-orb bg-orb--3"></div>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar__brand">
+            <div class="sidebar__logo">A</div>
+            <div>
+                <div class="sidebar__brand-text" data-i18n="brand_name">ApexVision</div>
+                <div class="sidebar__brand-sub" data-i18n="brand_sub">Q4 2025 Briefing</div>
+            </div>
+        </div>
+        <nav class="sidebar__nav" id="sidebarNav">
+            <button class="sidebar__nav-item active" data-slide="0"><span class="sidebar__nav-dot"></span><span data-i18n="nav_summary">Executive Summary</span></button>
+            <button class="sidebar__nav-item" data-slide="1"><span class="sidebar__nav-dot"></span><span data-i18n="nav_overview">Business Overview</span></button>
+            <button class="sidebar__nav-item" data-slide="2"><span class="sidebar__nav-dot"></span><span data-i18n="nav_revenue">Revenue Dashboard</span></button>
+            <button class="sidebar__nav-item" data-slide="3"><span class="sidebar__nav-dot"></span><span data-i18n="nav_sales">Sales Performance</span></button>
+            <button class="sidebar__nav-item" data-slide="4"><span class="sidebar__nav-dot"></span><span data-i18n="nav_customers">Customer Analytics</span></button>
+            <button class="sidebar__nav-item" data-slide="5"><span class="sidebar__nav-dot"></span><span data-i18n="nav_operations">Operations</span></button>
+            <button class="sidebar__nav-item" data-slide="6"><span class="sidebar__nav-dot"></span><span data-i18n="nav_financial">Financial Overview</span></button>
+            <button class="sidebar__nav-item" data-slide="7"><span class="sidebar__nav-dot"></span><span data-i18n="nav_insights">Strategic Insights</span></button>
+            <button class="sidebar__nav-item" data-slide="8"><span class="sidebar__nav-dot"></span><span data-i18n="nav_decision">Decision & Action</span></button>
+        </nav>
+        <div class="sidebar__footer">
+            <div class="sidebar__progress"><div class="sidebar__progress-fill" id="progressFill" style="width:11%"></div></div>
+            <button class="sidebar__btn" id="btnTheme" title="Toggle Dark/Light Mode">🌓 <span data-i18n="btn_theme">Toggle Theme</span></button>
+            <button class="sidebar__btn" id="btnFullscreen" title="Fullscreen (F)">⛶ <span data-i18n="btn_fullscreen">Fullscreen</span></button>
+            <button class="sidebar__btn" id="btnExport" title="Export / Print (E)">📄 <span data-i18n="btn_export">Export / Print</span></button>
+            <button class="sidebar__btn" id="btnLang" title="تبديل اللغة">🌐 <span data-i18n="btn_lang">العربية</span></button>
+        </div>
+    </aside>
+
+    <main class="main" id="mainContent">
+        <!-- Slide 0: Executive Summary -->
+        <section class="slide active" data-index="0">
+            <div class="slide__header">
+                <div>
+                    <div class="slide__subtitle" data-i18n="section_01">Section 01</div>
+                    <h1 class="slide__title" data-i18n="slide_summary_title">Executive Summary</h1>
+                </div>
+                <span class="slide__badge" data-i18n="badge_live">● Live Data</span>
+            </div>
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-card__icon blue">📈</div>
+                    <div class="kpi-card__value" data-count="284.7" data-prefix="$" data-suffix="M">$0M</div>
+                    <div class="kpi-card__label" data-i18n="kpi_revenue">Total Revenue</div>
+                    <span class="kpi-card__delta positive" data-i18n="kpi_revenue_delta">▲ +18.3% YoY</span>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-card__icon green">👥</div>
+                    <div class="kpi-card__value" data-count="14283" data-prefix="" data-suffix="">0</div>
+                    <div class="kpi-card__label" data-i18n="kpi_customers">Active Customers</div>
+                    <span class="kpi-card__delta positive" data-i18n="kpi_customers_delta">▲ +12.7% YoY</span>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-card__icon amber">⚡</div>
+                    <div class="kpi-card__value" data-count="94.2" data-prefix="" data-suffix="%">0%</div>
+                    <div class="kpi-card__label" data-i18n="kpi_sla">SLA Compliance</div>
+                    <span class="kpi-card__delta positive" data-i18n="kpi_sla_delta">▲ +2.1pp</span>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-card__icon purple">💰</div>
+                    <div class="kpi-card__value" data-count="67.8" data-prefix="$" data-suffix="M">$0M</div>
+                    <div class="kpi-card__label" data-i18n="kpi_profit">Net Profit</div>
+                    <span class="kpi-card__delta positive" data-i18n="kpi_profit_delta">▲ +22.4% YoY</span>
+                </div>
+            </div>
+            <div class="grid-2">
+                <div class="glass-card">
+                    <div class="glass-card__header"><span class="glass-card__title" data-i18n="card_highlights">Key Highlights</span></div>
+                    <p style="color:var(--text-secondary);font-size:0.84rem;line-height:1.6;" data-i18n="highlight_text">
+                        Q4 2025 delivered record-breaking performance across all business units. Revenue exceeded forecasts by <strong style="color:var(--green);">7.2%</strong>, driven by strong enterprise adoption and successful product launches in EMEA and APAC regions.
+                    </p>
+                </div>
+                <div class="glass-card">
+                    <div class="glass-card__header"><span class="glass-card__title" data-i18n="card_alert">Critical Alert</span></div>
+                    <p style="color:var(--text-secondary);font-size:0.84rem;line-height:1.6;" data-i18n="alert_text">
+                        Supply chain constraints in Q1 2026 may impact margins by an estimated <strong style="color:var(--amber);">2–3%</strong>. Mitigation strategies are being deployed across logistics and procurement teams.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 1: Business Overview -->
+        <section class="slide" data-index="1">
+            <div class="slide__header">
+                <div>
+                    <div class="slide__subtitle" data-i18n="section_02">Section 02</div>
+                    <h2 class="slide__title" data-i18n="slide_overview_title">Business Overview</h2>
+                </div>
+                <span class="slide__badge" data-i18n="badge_q4">● Q4 2025</span>
+            </div>
+            <div class="grid-2">
+                <div class="glass-card">
+                    <div class="glass-card__header"><span class="glass-card__title" data-i18n="chart_q_revenue">Quarterly Revenue Trend</span></div>
+                    <div class="chart-wrap"><canvas id="chartBizOverview"></canvas></div>
+                </div>
+                <div class="glass-card">
+                    <div class="glass-card__header"><span class="glass-card__title" data-i18n="chart_biz_units">Business Unit Performance</span></div>
+                    <div class="chart-wrap"><canvas id="chartBizUnits"></canvas></div>
+                </div>
+            </div>
+            <div class="grid-3">
+                <div class="insight-card"><div class="insight-card__title" data-i18n="insight_global">🌍 Global Reach</div><div class="insight-card__desc" data-i18n="insight_global_desc">Operating in 42 countries with 6 regional hubs. APAC grew 28% YoY.</div></div>
+                <div class="insight-card green"><div class="insight-card__title" data-i18n="insight_launch">🚀 Product Launch</div><div class="insight-card__desc" data-i18n="insight_launch_desc">3 major releases in Q4. Customer satisfaction score at 4.7/5.0.</div></div>
+                <div class="insight-card amber"><div class="insight-card__title" data-i18n="insight_ops">⚙️ Operational Efficiency</div><div class="insight-card__desc" data-i18n="insight_ops_desc">Cost-to-serve reduced by 8.4%. Automation rate now at 73%.</div></div>
+            </div>
+        </section>
+
+        <!-- Slide 2: Revenue Dashboard -->
+        <section class="slide" data-index="2">
+            <div class="slide__header">
+                <div>
+                    <div class="slide__subtitle" data-i18n="section_03">Section 03</div>
+                    <h2 class="slide__title" data-i18n="slide_revenue_title">Revenue Dashboard</h2>
+                </div>
+                <div class="filter-pills" id="revenueFilter">
+                    <button class="filter-pill active" data-period="monthly" data-i18n="filter_monthly">Monthly</button>
+                    <button class="filter-pill" data-period="quarterly" data-i18n="filter_quarterly">Quarterly</button>
+                    <button class="filter-pill" data-period="yearly" data-i18n="filter_yearly">Yearly</button>
+                </div>
+            </div>
+            <div class="grid-2-1">
+                <div class="glass-card">
+                    <div class="glass-card__header"><span class="glass-card__title" data-i18n="chart_rev_line">Revenue Stream (Line Chart)</span></div>
+                    <div class="chart-wrap large"><canvas id="chartRevenueLine"></canvas></div>
+                </div>
+                <div class="glass-card">
+                    <div class="glass-card__header"><span class="glass-card__title" data-i18n="chart_rev_bar">Revenue by Category</span></div>
+                    <div class="chart-wrap"><canvas id="chartRevenueBar"></canvas></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 3: Sales Performance -->
+        <section class="slide" data-index="3">
+            <div class="slide__header">
+                <div>
+                    <div class="slide__subtitle" data-i18n="section_04">Section 04</div>
+                    <h2 class="slide__title" data-i18n="slide_sales_title">Sales Performance</h2>
+                </div>
+                <div class="filter-pills" id="salesRegionFilter">
+                    <button class="filter-pill active" data-region="all" data-i18n="filter_all_regions">All Regions</button>
+                    <button class="filter-pill" data-region="na" data-i18n="filter_na">North America</button>
+                    <button class="filter-pill" data-region="emea" data-i18n="filter_emea">EMEA</button>
+                    <button class="filter-pill" data-region="apac" data-i18n="filter_apac">APAC</button>
+                </div>
+            </div>
+            <div class="grid-2">
+                <div class="glass-card">
+                    <div class="glass-card__header"><span class="glass-card__title" data-i18n="chart_sales_regional">Regional Sales Breakdown</span></div>
+                    <div class="chart-wrap large"><canvas id="chartSalesRegional"></canvas></div>
+                </div>
+                <div class="glass-card">
+                    <div class="glass-card__header"><span class="glass-card__title" data-i18n="chart_sales_category">Category Distribution</span></div>
+                    <div class="chart-wrap"><canvas id="chartSalesCategory"></canvas></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 4: Customer Analytics -->
+        <section class="slide" data-index="4">
+            <div class="slide__header">
+                <div>
+                    <div class="slide__subtitle" data-i18n="section_05">Section 05</div>
+                    <h2 class="slide__title" data-i18n="slide_customers_title">Customer Analytics</h2>
+                </div>
+                <span class="slide__badge" data-i18n="badge_retention">● Retention Focus</span>
+            </div>
+            <div class="grid-1-2">
+                <div class="glass-card" style="display:flex;flex-direction:column;align-items:center;">
+                    <div class="glass-card__header" style="width:100%;"><span class="glass-card__title" data-i18n="chart_funnel">Conversion Funnel</span></div>
+                    <div class="funnel">
+                        <div class="funnel__step"><span data-i18n="funnel_visitors">Visitors</span><br><strong>245K</strong></div>
+                        <div class="funnel__step"><span data-i18n="funnel_leads">Leads</span><br><strong>87K</strong></div>
+                        <div class="funnel__step"><span data-i18n="funnel_opps">Opportunities</span><br><strong>32K</strong></div>
+                        <div class="funnel__step"><span data-i18n="funnel_proposals">Proposals</span><br><strong>18K</strong></div>
+                        <div class="funnel__step"><span data-i18n="funnel_won">Won</span><br><strong>9.4K</strong></div>
+                    </div>
+                </div>
+                <div class="glass-card">
+                    <div class="glass-card__header"><span class="glass-card__title" data-i18n="chart_retention">Retention & Growth</span></div>
+                    <div class="chart-wrap"><canvas id="chartRetention"></canvas></div>
+                </div>
+            </div>
+            <div class="grid-2">
+                <div class="kpi-card">
+                    <div class="kpi-card__icon green">♻️</div>
+                    <div class="kpi-card__value" data-count="94.8" data-prefix="" data-suffix="%">0%</div>
+                    <div class="kpi-card__label" data-i18n="kpi_retention">Retention Rate</div>
+                    <span class="kpi-card__delta positive" data-i18n="kpi_retention_delta">▲ +3.2pp</span>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-card__icon blue">📊</div>
+                    <div class="kpi-card__value" data-count="1870" data-prefix="$" data-suffix="">$0</div>
+                    <div class="kpi-card__label" data-i18n="kpi_ltv">Avg. LTV per Customer</div>
+                    <span class="kpi-card__delta positive" data-i18n="kpi_ltv_delta">▲ +15.8%</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 5: Operations Dashboard -->
+        <section class="slide" data-index="5">
+            <div class="slide__header">
+                <div>
+                    <div class="slide__subtitle" data-i18n="section_06">Section 06</div>
+                    <h2 class="slide__title" data-i18n="slide_ops_title">Operations Dashboard</h2>
+                </div>
+                <span class="slide__badge warning" data-i18n="badge_attention">● Attention Needed</span>
+            </div>
+            <div class="grid-2">
+                <div class="glass-card">
+                    <div class="glass-card__header"><span class="glass-card__title" data-i18n="chart_dept_perf">Department Performance</span></div>
+                    <div class="chart-wrap"><canvas id="chartDeptPerf"></canvas></div>
+                </div>
+                <div class="glass-card">
+                    <div class="glass-card__header"><span class="glass-card__title" data-i18n="chart_ops_kpi">Operational KPIs</span></div>
+                    <div class="progress-group">
+                        <div class="progress-item">
+                            <div class="progress-item__header"><span class="progress-item__name" data-i18n="ops_fulfillment">Order Fulfillment</span><span class="progress-item__val">96%</span></div>
+                            <div class="progress-bar"><div class="progress-bar__fill green" style="width:96%"></div></div>
+                        </div>
+                        <div class="progress-item">
+                            <div class="progress-item__header"><span class="progress-item__name" data-i18n="ops_turnover">Inventory Turnover</span><span class="progress-item__val">88%</span></div>
+                            <div class="progress-bar"><div class="progress-bar__fill" style="width:88%"></div></div>
+                        </div>
+                        <div class="progress-item">
+                            <div class="progress-item__header"><span class="progress-item__name" data-i18n="ops_supplier">Supplier On-Time Delivery</span><span class="progress-item__val">82%</span></div>
+                            <div class="progress-bar"><div class="progress-bar__fill amber" style="width:82%"></div></div>
+                        </div>
+                        <div class="progress-item">
+                            <div class="progress-item__header"><span class="progress-item__name" data-i18n="ops_quality">Quality Assurance Score</span><span class="progress-item__val">91%</span></div>
+                            <div class="progress-bar"><div class="progress-bar__fill green" style="width:91%"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 6: Financial Overview -->
+        <section class="slide" data-index="6">
+            <div class="slide__header">
+                <div>
+                    <div class="slide__subtitle" data-i18n="section_07">Section 07</div>
+                    <h2 class="slide__title" data-i18n="slide_finance_title">Financial Overview</h2>
+                </div>
+                <span class="slide__badge" data-i18n="badge_forecast">● Forecast Included</span>
+            </div>
+            <div class="grid-2-1">
+                <div class="glass-card">
+                    <div class="glass-card__header"><span class="glass-card__title" data-i18n="chart_finance">Profit, Expenses & Forecast</span></div>
+                    <div class="chart-wrap large"><canvas id="chartFinancial"></canvas></div>
+                </div>
+                <div class="glass-card">
+                    <div class="glass-card__header"><span class="glass-card__title" data-i18n="chart_risk">Risk Indicators</span></div>
+                    <div class="progress-group" style="margin-top:8px;">
+                        <div class="progress-item">
+                            <div class="progress-item__header"><span class="progress-item__name" data-i18n="risk_market">Market Risk</span><span class="progress-item__val">Low 22%</span></div>
+                            <div class="progress-bar"><div class="progress-bar__fill green" style="width:22%"></div></div>
+                        </div>
+                        <div class="progress-item">
+                            <div class="progress-item__header"><span class="progress-item__name" data-i18n="risk_operational">Operational Risk</span><span class="progress-item__val">Moderate 48%</span></div>
+                            <div class="progress-bar"><div class="progress-bar__fill amber" style="width:48%"></div></div>
+                        </div>
+                        <div class="progress-item">
+                            <div class="progress-item__header"><span class="progress-item__name" data-i18n="risk_currency">Currency Exposure</span><span class="progress-item__val">Elevated 61%</span></div>
+                            <div class="progress-bar"><div class="progress-bar__fill amber" style="width:61%"></div></div>
+                        </div>
+                        <div class="progress-item">
+                            <div class="progress-item__header"><span class="progress-item__name" data-i18n="risk_credit">Credit Risk</span><span class="progress-item__val">Low 15%</span></div>
+                            <div class="progress-bar"><div class="progress-bar__fill green" style="width:15%"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 7: Strategic Insights -->
+        <section class="slide" data-index="7">
+            <div class="slide__header">
+                <div>
+                    <div class="slide__subtitle" data-i18n="section_08">Section 08</div>
+                    <h2 class="slide__title" data-i18n="slide_insights_title">Strategic Insights</h2>
+                </div>
+            </div>
+            <div class="grid-2">
+                <div style="display:flex;flex-direction:column;gap:14px;">
+                    <div class="insight-card"><div class="insight-card__title" data-i18n="insight_finding">🔑 Key Finding: Market Expansion</div><div class="insight-card__desc" data-i18n="insight_finding_desc">APAC markets show 31% higher growth potential than forecast. Recommend increasing investment by $12M in Q1 2026.</div></div>
+                    <div class="insight-card green"><div class="insight-card__title" data-i18n="insight_recommendation">💡 Recommendation: Product Bundling</div><div class="insight-card__desc" data-i18n="insight_recommendation_desc">Enterprise bundle adoption increased deal size by 24%. Roll out to all enterprise accounts by February.</div></div>
+                    <div class="insight-card amber"><div class="insight-card__title" data-i18n="insight_risk">⚠️ Risk: Supply Chain</div><div class="insight-card__desc" data-i18n="insight_risk_desc">Semiconductor shortages may delay 2 product lines. Secure alternate suppliers by mid-January.</div></div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:14px;">
+                    <div class="insight-card"><div class="insight-card__title" data-i18n="insight_ai">🚀 Opportunity: AI Integration</div><div class="insight-card__desc" data-i18n="insight_ai_desc">AI-powered features could unlock $40M in new revenue. Pilot program launching in March 2026.</div></div>
+                    <div class="insight-card green"><div class="insight-card__title" data-i18n="insight_data">📊 Data Insight: Customer Segments</div><div class="insight-card__desc" data-i18n="insight_data_desc">Mid-market segment shows 2.3x faster growth than enterprise. Dedicated mid-market team proposed.</div></div>
+                    <div class="insight-card"><div class="insight-card__title" data-i18n="insight_sustainability">🌱 Future: Sustainability</div><div class="insight-card__desc" data-i18n="insight_sustainability_desc">Green initiatives projected to reduce operational costs by 6% annually while boosting brand equity.</div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 8: Final Decision Slide -->
+        <section class="slide" data-index="8">
+            <div class="slide__header">
+                <div>
+                    <div class="slide__subtitle" data-i18n="section_09">Section 09</div>
+                    <h2 class="slide__title" data-i18n="slide_decision_title">Executive Decision & Action Plan</h2>
+                </div>
+            </div>
+            <div class="grid-2">
+                <div class="glass-card">
+                    <div class="glass-card__header"><span class="glass-card__title" data-i18n="table_action_plan">Action Plan</span></div>
+                    <div class="table-wrap">
+                        <table class="table-premium">
+                            <thead><tr><th data-i18n="th_action">Action</th><th data-i18n="th_owner">Owner</th><th data-i18n="th_deadline">Deadline</th><th data-i18n="th_status">Status</th></tr></thead>
+                            <tbody>
+                                <tr><td data-i18n="action_apac">APAC Investment Approval</td><td data-i18n="cfo">CFO</td><td data-i18n="date_jan15">Jan 15</td><td><span class="status-dot on-track"></span><span data-i18n="status_on_track">On Track</span></td></tr>
+                                <tr><td data-i18n="action_bundle">Enterprise Bundle Rollout</td><td data-i18n="vp_sales">VP Sales</td><td data-i18n="date_feb1">Feb 1</td><td><span class="status-dot on-track"></span><span data-i18n="status_on_track">On Track</span></td></tr>
+                                <tr><td data-i18n="action_supplier">Alternate Supplier Contract</td><td data-i18n="coo">COO</td><td data-i18n="date_jan20">Jan 20</td><td><span class="status-dot at-risk"></span><span data-i18n="status_at_risk">At Risk</span></td></tr>
+                                <tr><td data-i18n="action_ai">AI Pilot Program</td><td data-i18n="cto">CTO</td><td data-i18n="date_mar10">Mar 10</td><td><span class="status-dot on-track"></span><span data-i18n="status_on_track">On Track</span></td></tr>
+                                <tr><td data-i18n="action_midmarket">Mid-Market Team Formation</td><td data-i18n="chro">CHRO</td><td data-i18n="date_feb15">Feb 15</td><td><span class="status-dot on-track"></span><span data-i18n="status_on_track">On Track</span></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:16px;">
+                    <div class="glass-card">
+                        <div class="glass-card__header"><span class="glass-card__title" data-i18n="conclusion_title">Executive Conclusion</span></div>
+                        <p style="color:var(--text-secondary);font-size:0.84rem;line-height:1.6;" data-i18n="conclusion_text">
+                            Q4 2025 performance positions us for an exceptional FY2026. The strategic investments outlined above are projected to deliver <strong style="color:var(--green);">$85M+ in incremental revenue</strong> with a 22% IRR. Approval is recommended for all proposed initiatives.
+                        </p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-avatar">JD</div>
+                        <div>
+                            <div style="font-weight:600;color:var(--text-primary);" data-i18n="contact_name">Jane Davidson</div>
+                            <div style="font-size:0.78rem;color:var(--text-muted);" data-i18n="contact_role">Chief Strategy Officer</div>
+                            <div style="font-size:0.75rem;color:var(--accent);">j.davidson@apexvision.com</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script>
+        (function() {
+            // ===== TRANSLATIONS =====
+            const translations = {
+                en: {
+                    brand_name: "ApexVision",
+                    brand_sub: "Q4 2025 Briefing",
+                    nav_summary: "Executive Summary",
+                    nav_overview: "Business Overview",
+                    nav_revenue: "Revenue Dashboard",
+                    nav_sales: "Sales Performance",
+                    nav_customers: "Customer Analytics",
+                    nav_operations: "Operations",
+                    nav_financial: "Financial Overview",
+                    nav_insights: "Strategic Insights",
+                    nav_decision: "Decision & Action",
+                    btn_theme: "Toggle Theme",
+                    btn_fullscreen: "Fullscreen",
+                    btn_export: "Export / Print",
+                    btn_lang: "العربية",
+                    section_01: "Section 01",
+                    slide_summary_title: "Executive Summary",
+                    badge_live: "● Live Data",
+                    kpi_revenue: "Total Revenue",
+                    kpi_revenue_delta: "▲ +18.3% YoY",
+                    kpi_customers: "Active Customers",
+                    kpi_customers_delta: "▲ +12.7% YoY",
+                    kpi_sla: "SLA Compliance",
+                    kpi_sla_delta: "▲ +2.1pp",
+                    kpi_profit: "Net Profit",
+                    kpi_profit_delta: "▲ +22.4% YoY",
+                    card_highlights: "Key Highlights",
+                    highlight_text: 'Q4 2025 delivered record-breaking performance across all business units. Revenue exceeded forecasts by <strong style="color:var(--green);">7.2%</strong>, driven by strong enterprise adoption and successful product launches in EMEA and APAC regions.',
+                    card_alert: "Critical Alert",
+                    alert_text: 'Supply chain constraints in Q1 2026 may impact margins by an estimated <strong style="color:var(--amber);">2–3%</strong>. Mitigation strategies are being deployed across logistics and procurement teams.',
+                    section_02: "Section 02",
+                    slide_overview_title: "Business Overview",
+                    badge_q4: "● Q4 2025",
+                    chart_q_revenue: "Quarterly Revenue Trend",
+                    chart_biz_units: "Business Unit Performance",
+                    insight_global: "🌍 Global Reach",
+                    insight_global_desc: "Operating in 42 countries with 6 regional hubs. APAC grew 28% YoY.",
+                    insight_launch: "🚀 Product Launch",
+                    insight_launch_desc: "3 major releases in Q4. Customer satisfaction score at 4.7/5.0.",
+                    insight_ops: "⚙️ Operational Efficiency",
+                    insight_ops_desc: "Cost-to-serve reduced by 8.4%. Automation rate now at 73%.",
+                    section_03: "Section 03",
+                    slide_revenue_title: "Revenue Dashboard",
+                    filter_monthly: "Monthly",
+                    filter_quarterly: "Quarterly",
+                    filter_yearly: "Yearly",
+                    chart_rev_line: "Revenue Stream (Line Chart)",
+                    chart_rev_bar: "Revenue by Category",
+                    section_04: "Section 04",
+                    slide_sales_title: "Sales Performance",
+                    filter_all_regions: "All Regions",
+                    filter_na: "North America",
+                    filter_emea: "EMEA",
+                    filter_apac: "APAC",
+                    chart_sales_regional: "Regional Sales Breakdown",
+                    chart_sales_category: "Category Distribution",
+                    section_05: "Section 05",
+                    slide_customers_title: "Customer Analytics",
+                    badge_retention: "● Retention Focus",
+                    chart_funnel: "Conversion Funnel",
+                    funnel_visitors: "Visitors",
+                    funnel_leads: "Leads",
+                    funnel_opps: "Opportunities",
+                    funnel_proposals: "Proposals",
+                    funnel_won: "Won",
+                    chart_retention: "Retention & Growth",
+                    kpi_retention: "Retention Rate",
+                    kpi_retention_delta: "▲ +3.2pp",
+                    kpi_ltv: "Avg. LTV per Customer",
+                    kpi_ltv_delta: "▲ +15.8%",
+                    section_06: "Section 06",
+                    slide_ops_title: "Operations Dashboard",
+                    badge_attention: "● Attention Needed",
+                    chart_dept_perf: "Department Performance",
+                    chart_ops_kpi: "Operational KPIs",
+                    ops_fulfillment: "Order Fulfillment",
+                    ops_turnover: "Inventory Turnover",
+                    ops_supplier: "Supplier On-Time Delivery",
+                    ops_quality: "Quality Assurance Score",
+                    section_07: "Section 07",
+                    slide_finance_title: "Financial Overview",
+                    badge_forecast: "● Forecast Included",
+                    chart_finance: "Profit, Expenses & Forecast",
+                    chart_risk: "Risk Indicators",
+                    risk_market: "Market Risk",
+                    risk_operational: "Operational Risk",
+                    risk_currency: "Currency Exposure",
+                    risk_credit: "Credit Risk",
+                    section_08: "Section 08",
+                    slide_insights_title: "Strategic Insights",
+                    insight_finding: "🔑 Key Finding: Market Expansion",
+                    insight_finding_desc: "APAC markets show 31% higher growth potential than forecast. Recommend increasing investment by $12M in Q1 2026.",
+                    insight_recommendation: "💡 Recommendation: Product Bundling",
+                    insight_recommendation_desc: "Enterprise bundle adoption increased deal size by 24%. Roll out to all enterprise accounts by February.",
+                    insight_risk: "⚠️ Risk: Supply Chain",
+                    insight_risk_desc: "Semiconductor shortages may delay 2 product lines. Secure alternate suppliers by mid-January.",
+                    insight_ai: "🚀 Opportunity: AI Integration",
+                    insight_ai_desc: "AI-powered features could unlock $40M in new revenue. Pilot program launching in March 2026.",
+                    insight_data: "📊 Data Insight: Customer Segments",
+                    insight_data_desc: "Mid-market segment shows 2.3x faster growth than enterprise. Dedicated mid-market team proposed.",
+                    insight_sustainability: "🌱 Future: Sustainability",
+                    insight_sustainability_desc: "Green initiatives projected to reduce operational costs by 6% annually while boosting brand equity.",
+                    section_09: "Section 09",
+                    slide_decision_title: "Executive Decision & Action Plan",
+                    table_action_plan: "Action Plan",
+                    th_action: "Action",
+                    th_owner: "Owner",
+                    th_deadline: "Deadline",
+                    th_status: "Status",
+                    action_apac: "APAC Investment Approval",
+                    cfo: "CFO",
+                    date_jan15: "Jan 15",
+                    status_on_track: "On Track",
+                    action_bundle: "Enterprise Bundle Rollout",
+                    vp_sales: "VP Sales",
+                    date_feb1: "Feb 1",
+                    action_supplier: "Alternate Supplier Contract",
+                    coo: "COO",
+                    date_jan20: "Jan 20",
+                    status_at_risk: "At Risk",
+                    action_ai: "AI Pilot Program",
+                    cto: "CTO",
+                    date_mar10: "Mar 10",
+                    action_midmarket: "Mid-Market Team Formation",
+                    chro: "CHRO",
+                    date_feb15: "Feb 15",
+                    conclusion_title: "Executive Conclusion",
+                    conclusion_text: 'Q4 2025 performance positions us for an exceptional FY2026. The strategic investments outlined above are projected to deliver <strong style="color:var(--green);">$85M+ in incremental revenue</strong> with a 22% IRR. Approval is recommended for all proposed initiatives.',
+                    contact_name: "Jane Davidson",
+                    contact_role: "Chief Strategy Officer",
+                    chart_label_revenue: "Revenue",
+                    chart_label_forecast: "Forecast",
+                    chart_label_2024: "2024",
+                    chart_label_2025: "2025",
+                    chart_label_saas: "SaaS",
+                    chart_label_services: "Services",
+                    chart_label_hardware: "Hardware",
+                    chart_label_support: "Support",
+                    chart_label_na: "N. America",
+                    chart_label_emea: "EMEA",
+                    chart_label_apac: "APAC",
+                    chart_label_latam: "LATAM",
+                    chart_label_mena: "MENA",
+                    chart_label_retention: "Retention %",
+                    chart_label_industry_avg: "Industry Avg",
+                    chart_label_profit: "Profit ($M)",
+                    chart_label_expenses: "Expenses ($M)",
+                    chart_label_forecast_profit: "Forecast Profit",
+                    chart_label_enterprise: "Enterprise",
+                    chart_label_midmarket: "Mid-Market",
+                    chart_label_smb: "SMB",
+                    chart_label_partner: "Partner",
+                    chart_label_q1: "Q1",
+                    chart_label_q2: "Q2",
+                    chart_label_q3: "Q3",
+                    chart_label_q4: "Q4",
+                    chart_label_sales: "Sales",
+                    chart_label_marketing: "Marketing",
+                    chart_label_engineering: "Engineering",
+                    chart_label_support_dept: "Support",
+                    chart_label_finance: "Finance",
+                    chart_label_hr: "HR",
+                    chart_label_enterprise_sw: "Enterprise SW",
+                    chart_label_cloud: "Cloud Services",
+                    chart_label_prof_svcs: "Professional Svcs",
+                    chart_label_hw: "Hardware",
+                    chart_label_support_svc: "Support",
+                },
+                ar: {
+                    brand_name: "أبيكس فيجن",
+                    brand_sub: "الموجز الربع الرابع 2025",
+                    nav_summary: "الملخص التنفيذي",
+                    nav_overview: "نظرة عامة على الأعمال",
+                    nav_revenue: "لوحة الإيرادات",
+                    nav_sales: "أداء المبيعات",
+                    nav_customers: "تحليلات العملاء",
+                    nav_operations: "العمليات",
+                    nav_financial: "النظرة المالية",
+                    nav_insights: "رؤى استراتيجية",
+                    nav_decision: "القرار وخطة العمل",
+                    btn_theme: "تبديل السمة",
+                    btn_fullscreen: "ملء الشاشة",
+                    btn_export: "تصدير / طباعة",
+                    btn_lang: "English",
+                    section_01: "القسم 01",
+                    slide_summary_title: "الملخص التنفيذي",
+                    badge_live: "● بيانات حية",
+                    kpi_revenue: "إجمالي الإيرادات",
+                    kpi_revenue_delta: "▲ +18.3% سنويًا",
+                    kpi_customers: "العملاء النشطون",
+                    kpi_customers_delta: "▲ +12.7% سنويًا",
+                    kpi_sla: "الامتثال لاتفاقية مستوى الخدمة",
+                    kpi_sla_delta: "▲ +2.1 نقطة",
+                    kpi_profit: "صافي الربح",
+                    kpi_profit_delta: "▲ +22.4% سنويًا",
+                    card_highlights: "أبرز النقاط",
+                    highlight_text: 'حقق الربع الرابع من عام 2025 أداءً قياسيًا في جميع وحدات الأعمال. تجاوزت الإيرادات التوقعات بنسبة <strong style="color:var(--green);">7.2%</strong>، مدفوعة بالاعتماد القوي للمؤسسات وإطلاق المنتجات الناجحة في مناطق أوروبا والشرق الأوسط وأفريقيا وآسيا والمحيط الهادئ.',
+                    card_alert: "تنبيه هام",
+                    alert_text: 'قد تؤثر قيود سلسلة التوريد في الربع الأول من عام 2026 على الهوامش بنسبة تقدر بـ <strong style="color:var(--amber);">2–3%</strong>. يتم حاليًا تنفيذ استراتيجيات التخفيف عبر فرق الخدمات اللوجستية والمشتريات.',
+                    section_02: "القسم 02",
+                    slide_overview_title: "نظرة عامة على الأعمال",
+                    badge_q4: "● الربع الرابع 2025",
+                    chart_q_revenue: "اتجاه الإيرادات الربعية",
+                    chart_biz_units: "أداء وحدات الأعمال",
+                    insight_global: "🌍 الانتشار العالمي",
+                    insight_global_desc: "نعمل في 42 دولة مع 6 مراكز إقليمية. نمت منطقة آسيا والمحيط الهادئ بنسبة 28% سنويًا.",
+                    insight_launch: "🚀 إطلاق المنتج",
+                    insight_launch_desc: "3 إصدارات رئيسية في الربع الرابع. درجة رضا العملاء 4.7/5.0.",
+                    insight_ops: "⚙️ الكفاءة التشغيلية",
+                    insight_ops_desc: "انخفضت تكلفة الخدمة بنسبة 8.4%. بلغ معدل الأتمتة الآن 73%.",
+                    section_03: "القسم 03",
+                    slide_revenue_title: "لوحة الإيرادات",
+                    filter_monthly: "شهري",
+                    filter_quarterly: "ربع سنوي",
+                    filter_yearly: "سنوي",
+                    chart_rev_line: "تدفق الإيرادات (مخطط خطي)",
+                    chart_rev_bar: "الإيرادات حسب الفئة",
+                    section_04: "القسم 04",
+                    slide_sales_title: "أداء المبيعات",
+                    filter_all_regions: "جميع المناطق",
+                    filter_na: "أمريكا الشمالية",
+                    filter_emea: "أوروبا والشرق الأوسط",
+                    filter_apac: "آسيا والمحيط الهادئ",
+                    chart_sales_regional: "توزيع المبيعات الإقليمية",
+                    chart_sales_category: "توزيع الفئات",
+                    section_05: "القسم 05",
+                    slide_customers_title: "تحليلات العملاء",
+                    badge_retention: "● التركيز على الاحتفاظ",
+                    chart_funnel: "قمع التحويل",
+                    funnel_visitors: "الزوار",
+                    funnel_leads: "العملاء المحتملون",
+                    funnel_opps: "الفرص",
+                    funnel_proposals: "العروض",
+                    funnel_won: "مكتملة",
+                    chart_retention: "الاحتفاظ والنمو",
+                    kpi_retention: "معدل الاحتفاظ",
+                    kpi_retention_delta: "▲ +3.2 نقطة",
+                    kpi_ltv: "متوسط قيمة العميل الدائمة",
+                    kpi_ltv_delta: "▲ +15.8%",
+                    section_06: "القسم 06",
+                    slide_ops_title: "لوحة العمليات",
+                    badge_attention: "● يحتاج إلى انتباه",
+                    chart_dept_perf: "أداء الأقسام",
+                    chart_ops_kpi: "مؤشرات الأداء التشغيلية",
+                    ops_fulfillment: "تنفيذ الطلبات",
+                    ops_turnover: "دوران المخزون",
+                    ops_supplier: "تسليم الموردين في الوقت المحدد",
+                    ops_quality: "درجة ضمان الجودة",
+                    section_07: "القسم 07",
+                    slide_finance_title: "النظرة المالية",
+                    badge_forecast: "● يشمل التوقعات",
+                    chart_finance: "الربح والمصروفات والتوقعات",
+                    chart_risk: "مؤشرات المخاطر",
+                    risk_market: "مخاطر السوق",
+                    risk_operational: "المخاطر التشغيلية",
+                    risk_currency: "التعرض للعملات",
+                    risk_credit: "مخاطر الائتمان",
+                    section_08: "القسم 08",
+                    slide_insights_title: "رؤى استراتيجية",
+                    insight_finding: "🔑 نتيجة رئيسية: التوسع في السوق",
+                    insight_finding_desc: "تُظهر أسواق آسيا والمحيط الهادئ إمكانات نمو أعلى بنسبة 31% من التوقعات. يُوصى بزيادة الاستثمار بمقدار 12 مليون دولار في الربع الأول من عام 2026.",
+                    insight_recommendation: "💡 توصية: تجميع المنتجات",
+                    insight_recommendation_desc: "أدت حزمة المؤسسات إلى زيادة حجم الصفقة بنسبة 24%. سيتم تعميمها على جميع حسابات المؤسسات بحلول فبراير.",
+                    insight_risk: "⚠️ خطر: سلسلة التوريد",
+                    insight_risk_desc: "قد يؤدي نقص أشباه الموصلات إلى تأخير خطي إنتاج. تأمين موردين بديلين بحلول منتصف يناير.",
+                    insight_ai: "🚀 فرصة: تكامل الذكاء الاصطناعي",
+                    insight_ai_desc: "يمكن للميزات المدعومة بالذكاء الاصطناعي أن تفتح إيرادات جديدة بقيمة 40 مليون دولار. يبدأ البرنامج التجريبي في مارس 2026.",
+                    insight_data: "📊 رؤية بيانات: شرائح العملاء",
+                    insight_data_desc: "يُظهر قطاع السوق المتوسط نموًا أسرع بـ 2.3 مرة من المؤسسات. تم اقتراح فريق مخصص للسوق المتوسط.",
+                    insight_sustainability: "🌱 المستقبل: الاستدامة",
+                    insight_sustainability_desc: "من المتوقع أن تقلل المبادرات الخضراء التكاليف التشغيلية بنسبة 6% سنويًا مع تعزيز قيمة العلامة التجارية.",
+                    section_09: "القسم 09",
+                    slide_decision_title: "القرار التنفيذي وخطة العمل",
+                    table_action_plan: "خطة العمل",
+                    th_action: "الإجراء",
+                    th_owner: "المسؤول",
+                    th_deadline: "الموعد النهائي",
+                    th_status: "الحالة",
+                    action_apac: "الموافقة على استثمار آسيا والمحيط الهادئ",
+                    cfo: "المدير المالي",
+                    date_jan15: "15 يناير",
+                    status_on_track: "على المسار",
+                    action_bundle: "طرح حزمة المؤسسات",
+                    vp_sales: "نائب الرئيس للمبيعات",
+                    date_feb1: "1 فبراير",
+                    action_supplier: "عقد مورد بديل",
+                    coo: "المدير التنفيذي للعمليات",
+                    date_jan20: "20 يناير",
+                    status_at_risk: "في خطر",
+                    action_ai: "برنامج الذكاء الاصطناعي التجريبي",
+                    cto: "المدير التقني",
+                    date_mar10: "10 مارس",
+                    action_midmarket: "تشكيل فريق السوق المتوسط",
+                    chro: "المدير التنفيذي للموارد البشرية",
+                    date_feb15: "15 فبراير",
+                    conclusion_title: "الخلاصة التنفيذية",
+                    conclusion_text: 'يضعنا أداء الربع الرابع من عام 2025 في موقع متميز للسنة المالية 2026. من المتوقع أن تحقق الاستثمارات الاستراتيجية المذكورة أعلاه <strong style="color:var(--green);">أكثر من 85 مليون دولار من الإيرادات الإضافية</strong> بمعدل عائد داخلي 22%. يُوصى بالموافقة على جميع المبادرات المقترحة.',
+                    contact_name: "جين ديفيدسون",
+                    contact_role: "كبير مسؤولي الاستراتيجية",
+                    chart_label_revenue: "الإيرادات",
+                    chart_label_forecast: "التوقعات",
+                    chart_label_2024: "2024",
+                    chart_label_2025: "2025",
+                    chart_label_saas: "البرمجيات كخدمة",
+                    chart_label_services: "الخدمات",
+                    chart_label_hardware: "الأجهزة",
+                    chart_label_support: "الدعم",
+                    chart_label_na: "أمريكا الشمالية",
+                    chart_label_emea: "أوروبا والشرق الأوسط",
+                    chart_label_apac: "آسيا والمحيط الهادئ",
+                    chart_label_latam: "أمريكا اللاتينية",
+                    chart_label_mena: "الشرق الأوسط وشمال أفريقيا",
+                    chart_label_retention: "نسبة الاحتفاظ",
+                    chart_label_industry_avg: "متوسط الصناعة",
+                    chart_label_profit: "الربح (مليون دولار)",
+                    chart_label_expenses: "المصروفات (مليون دولار)",
+                    chart_label_forecast_profit: "توقعات الربح",
+                    chart_label_enterprise: "المؤسسات",
+                    chart_label_midmarket: "السوق المتوسط",
+                    chart_label_smb: "الشركات الصغيرة",
+                    chart_label_partner: "الشركاء",
+                    chart_label_q1: "الربع الأول",
+                    chart_label_q2: "الربع الثاني",
+                    chart_label_q3: "الربع الثالث",
+                    chart_label_q4: "الربع الرابع",
+                    chart_label_sales: "المبيعات",
+                    chart_label_marketing: "التسويق",
+                    chart_label_engineering: "الهندسة",
+                    chart_label_support_dept: "الدعم",
+                    chart_label_finance: "المالية",
+                    chart_label_hr: "الموارد البشرية",
+                    chart_label_enterprise_sw: "برمجيات المؤسسات",
+                    chart_label_cloud: "الخدمات السحابية",
+                    chart_label_prof_svcs: "الخدمات المهنية",
+                    chart_label_hw: "الأجهزة",
+                    chart_label_support_svc: "الدعم",
+                }
+            };
+
+            function getLang() { return document.documentElement.lang || 'en'; }
+
+            function setLang(lang) {
+                document.documentElement.lang = lang;
+                localStorage.setItem('apex-lang', lang);
+                document.body.dir = lang === 'ar' ? 'rtl' : 'ltr';
+                applyTranslations(lang);
+                updateChartLanguage(lang);
+                // Ensure the language button text reflects the other language
+                const btnLangSpan = document.querySelector('#btnLang span[data-i18n="btn_lang"]');
+                if (btnLangSpan) btnLangSpan.textContent = lang === 'ar' ? 'English' : 'العربية';
+                showToast(lang === 'ar' ? 'تم تغيير اللغة إلى العربية' : 'Language switched to English');
+            }
+
+            function applyTranslations(lang) {
+                const t = translations[lang] || translations.en;
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    const key = el.getAttribute('data-i18n');
+                    if (t[key] !== undefined) {
+                        // FIX: Use innerHTML for translations that contain HTML tags, textContent for plain text
+                        if (/<[a-z][\s\S]*>/i.test(t[key])) {
+                            el.innerHTML = t[key];
+                        } else {
+                            el.textContent = t[key];
+                        }
+                    }
+                });
+            }
+
+            function updateChartLanguage(lang) {
+                const t = translations[lang] || translations.en;
+                const chartLabelMap = {
+                    'bizOverview': {
+                        datasets: [{ label: t.chart_label_revenue }, { label: t.chart_label_forecast }],
+                        labels: [t.chart_label_q1, t.chart_label_q2, t.chart_label_q3, t.chart_label_q4]
+                    },
+                    'bizUnits': {
+                        datasets: [{ label: t.chart_label_revenue + ' ($M)' }],
+                        labels: [t.chart_label_enterprise, t.chart_label_midmarket, t.chart_label_smb,
+                            t.chart_label_partner
+                        ]
+                    },
+                    'revenueLine': {
+                        datasets: [{ label: t.chart_label_2024 }, { label: t.chart_label_2025 }],
+                    },
+                    'revenueBar': {
+                        datasets: [{ label: t.chart_label_revenue + ' ($M)' }],
+                        labels: [t.chart_label_saas, t.chart_label_services, t.chart_label_hardware,
+                            t.chart_label_support
+                        ]
+                    },
+                    'salesRegional': {
+                        datasets: [{ label: t.chart_label_sales + ' ($M)' }],
+                        labels: [t.chart_label_na, t.chart_label_emea, t.chart_label_apac, t.chart_label_latam,
+                            t.chart_label_mena
+                        ]
+                    },
+                    'salesCategory': {
+                        datasets: [{ label: '' }],
+                        labels: [t.chart_label_enterprise_sw, t.chart_label_cloud, t.chart_label_prof_svcs,
+                            t.chart_label_hw, t.chart_label_support_svc
+                        ]
+                    },
+                    'retention': {
+                        datasets: [{ label: t.chart_label_retention }, { label: t.chart_label_industry_avg }],
+                    },
+                    'deptPerf': {
+                        datasets: [{ label: t.chart_label_revenue }],
+                        labels: [t.chart_label_sales, t.chart_label_marketing, t.chart_label_engineering,
+                            t.chart_label_support_dept, t.chart_label_finance, t.chart_label_hr
+                        ]
+                    },
+                    'financial': {
+                        datasets: [{ label: t.chart_label_profit }, { label: t.chart_label_expenses }, { label: t
+                                .chart_label_forecast_profit }],
+                        labels: [t.chart_label_q1, t.chart_label_q2, t.chart_label_q3, t.chart_label_q4, 'Q1F',
+                            'Q2F'
+                        ]
+                    }
+                };
+                Object.keys(chartLabelMap).forEach(chartKey => {
+                    const chart = chartInstances[chartKey];
+                    if (!chart) return;
+                    const map = chartLabelMap[chartKey];
+                    if (map.labels) chart.data.labels = map.labels;
+                    if (map.datasets) {
+                        map.datasets.forEach((ds, i) => {
+                            if (chart.data.datasets[i] && ds.label !== undefined) {
+                                chart.data.datasets[i].label = ds.label;
+                            }
+                        });
+                    }
+                    chart.update('none');
+                });
+            }
+
+            // ===== STATE & CORE LOGIC =====
+            let currentSlide = 0;
+            const totalSlides = 9;
+            let isTransitioning = false;
+            const chartInstances = {};
+            const slideEls = document.querySelectorAll('.slide');
+            const navItems = document.querySelectorAll('.sidebar__nav-item');
+            const progressFill = document.getElementById('progressFill');
+            const body = document.body;
+            const html = document.documentElement;
+
+            function getTheme() { return html.getAttribute('data-theme') || 'dark'; }
+
+            function setTheme(theme) {
+                html.setAttribute('data-theme', theme);
+                localStorage.setItem('apex-theme', theme);
+                updateAllChartThemes();
+                showToast(theme === 'dark' ? '🌙 Dark Mode' : '☀️ Light Mode');
+            }
+
+            function toggleTheme() { setTheme(getTheme() === 'dark' ? 'light' : 'dark'); }
+            const savedTheme = localStorage.getItem('apex-theme');
+            if (savedTheme) setTheme(savedTheme);
+
+            function navigateTo(index) {
+                if (isTransitioning || index === currentSlide || index < 0 || index >= totalSlides) return;
+                isTransitioning = true;
+                const leaving = slideEls[currentSlide];
+                const entering = slideEls[index];
+                leaving.classList.remove('active');
+                entering.classList.add('active');
+                currentSlide = index;
+                navItems.forEach((item, i) => item.classList.toggle('active', i === index));
+                progressFill.style.width = ((index + 1) / totalSlides * 100) + '%';
+                animateCountersInSlide(entering);
+                entering.scrollTop = 0;
+                setTimeout(() => { isTransitioning = false; }, 520);
+            }
+
+            function animateCountersInSlide(slideEl) {
+                const counters = slideEl.querySelectorAll('[data-count]');
+                counters.forEach(el => {
+                    const target = parseFloat(el.getAttribute('data-count'));
+                    const prefix = el.getAttribute('data-prefix') || '';
+                    const suffix = el.getAttribute('data-suffix') || '';
+                    if (isNaN(target)) return;
+                    animateCounter(el, target, prefix, suffix, 1600);
+                });
+            }
+
+            function animateCounter(el, target, prefix, suffix, duration) {
+                const startTime = performance.now();
+                const startVal = 0;
+
+                function update(now) {
+                    const elapsed = now - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    const eased = 1 - Math.pow(1 - progress, 3);
+                    const current = startVal + (target - startVal) * eased;
+                    if (target >= 1000 && suffix !== '%') {
+                        el.textContent = prefix + formatNum(current) + suffix;
+                    } else if (suffix === '%') {
+                        el.textContent = prefix + current.toFixed(1) + suffix;
+                    } else {
+                        el.textContent = prefix + formatNum(current) + suffix;
+                    }
+                    if (progress < 1) {
+                        requestAnimationFrame(update);
+                    } else {
+                        if (target >= 1000 && suffix !== '%') {
+                            el.textContent = prefix + formatNum(target) + suffix;
+                        } else if (suffix === '%') {
+                            el.textContent = prefix + target.toFixed(1) + suffix;
+                        } else {
+                            el.textContent = prefix + formatNum(target) + suffix;
+                        }
+                    }
+                }
+                requestAnimationFrame(update);
+            }
+
+            function formatNum(num) {
+                if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
+                if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
+                return num.toFixed(1);
+            }
+
+            document.getElementById('sidebarNav').addEventListener('click', (e) => {
+                const item = e.target.closest('.sidebar__nav-item');
+                if (!item) return;
+                const idx = parseInt(item.getAttribute('data-slide'));
+                if (!isNaN(idx)) navigateTo(idx);
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target
+                    .isContentEditable) return;
+                switch (e.key) {
+                    case 'ArrowRight':
+                    case 'ArrowDown':
+                        e.preventDefault();
+                        navigateTo(Math.min(currentSlide + 1, totalSlides - 1));
+                        break;
+                    case 'ArrowLeft':
+                    case 'ArrowUp':
+                        e.preventDefault();
+                        navigateTo(Math.max(currentSlide - 1, 0));
+                        break;
+                    case 'f':
+                    case 'F':
+                        if (!e.ctrlKey && !e.metaKey && !e.altKey) { e.preventDefault();
+                            toggleFullscreen(); }
+                        break;
+                    case 'd':
+                    case 'D':
+                        if (!e.ctrlKey && !e.metaKey && !e.altKey) { e.preventDefault();
+                            toggleTheme(); }
+                        break;
+                    case 'e':
+                    case 'E':
+                        if (!e.ctrlKey && !e.metaKey && !e.altKey) { e.preventDefault();
+                            exportPresentation(); }
+                        break;
+                    case 'Escape':
+                        if (document.fullscreenElement) { document.exitFullscreen();
+                            showToast('Exited fullscreen'); }
+                        break;
+                    default:
+                        if (e.key >= '1' && e.key <= '9') { e.preventDefault();
+                            navigateTo(parseInt(e.key) - 1); }
+                }
+            });
+
+            function toggleFullscreen() {
+                if (!document.fullscreenElement) {
+                    document.documentElement.requestFullscreen().then(() => {
+                        body.classList.add('fullscreen');
+                        showToast('📺 Fullscreen mode');
+                    }).catch(() => showToast('Fullscreen not supported'));
+                } else {
+                    document.exitFullscreen().then(() => body.classList.remove('fullscreen'));
+                }
+            }
+            document.addEventListener('fullscreenchange', () => {
+                if (!document.fullscreenElement) body.classList.remove('fullscreen');
+            });
+
+            function exportPresentation() {
+                showToast('📄 Opening print dialog...');
+                setTimeout(() => window.print(), 400);
+            }
+
+            function showToast(msg) {
+                const container = document.getElementById('toastContainer');
+                const toast = document.createElement('div');
+                toast.className = 'toast';
+                toast.textContent = msg;
+                container.appendChild(toast);
+                setTimeout(() => toast.remove(), 2600);
+            }
+
+            document.getElementById('btnTheme').addEventListener('click', toggleTheme);
+            document.getElementById('btnFullscreen').addEventListener('click', toggleFullscreen);
+            document.getElementById('btnExport').addEventListener('click', exportPresentation);
+            document.getElementById('btnLang').addEventListener('click', () => {
+                const newLang = getLang() === 'ar' ? 'en' : 'ar';
+                setLang(newLang);
+            });
+
+            document.querySelectorAll('.filter-pills').forEach(group => {
+                group.addEventListener('click', (e) => {
+                    const pill = e.target.closest('.filter-pill');
+                    if (!pill) return;
+                    group.querySelectorAll('.filter-pill').forEach(p => p.classList.remove(
+                    'active'));
+                    pill.classList.add('active');
+                    const dataset = pill.dataset;
+                    if (dataset.period) updateRevenueChart(dataset.period);
+                    if (dataset.region) updateSalesChart(dataset.region);
+                });
+            });
+
+            function getChartColors() {
+                const isDark = getTheme() === 'dark';
+                return {
+                    text: isDark ? '#9aa4b8' : '#4a5568',
+                    grid: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)',
+                    accent: '#4d8cf5',
+                    green: '#10b981',
+                    amber: '#f59e0b',
+                    purple: '#a855f7',
+                    cyan: '#06b6d4',
+                    red: '#ef4444',
+                    accentLight: 'rgba(77,140,245,0.25)',
+                    greenLight: 'rgba(16,185,129,0.25)',
+                    amberLight: 'rgba(245,158,11,0.25)',
+                };
+            }
+
+            function baseFont() { return { family: "'Inter','Segoe UI',system-ui,sans-serif", size: 11 }; }
+
+            function baseOptions(extra = {}) {
+                const c = getChartColors();
+                return {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    animation: { duration: 800, easing: 'easeOutQuart' },
+                    plugins: {
+                        legend: { labels: { color: c.text, font: { ...baseFont(), size: 10 },
+                                usePointStyle: true, pointStyleWidth: 8, padding: 16 } },
+                        tooltip: {
+                            backgroundColor: getTheme() === 'dark' ? 'rgba(18,24,38,0.95)' :
+                                'rgba(255,255,255,0.95)',
+                            titleColor: c.text,
+                            bodyColor: c.text,
+                            borderColor: c.grid,
+                            borderWidth: 1,
+                            cornerRadius: 10,
+                            padding: 12,
+                        },
+                        ...extra,
+                    },
+                    scales: {
+                        x: { ticks: { color: c.text, font: baseFont() }, grid: { color: c.grid },
+                            border: { color: c.grid } },
+                        y: { ticks: { color: c.text, font: baseFont() }, grid: { color: c.grid },
+                            border: { color: c.grid }, beginAtZero: true },
+                    },
+                };
+            }
+
+            function createAllCharts() {
+                const c = getChartColors();
+                const lang = getLang();
+                const t = translations[lang] || translations.en;
+                const ctx1 = document.getElementById('chartBizOverview')?.getContext('2d');
+                if (ctx1 && !chartInstances['bizOverview']) {
+                    chartInstances['bizOverview'] = new Chart(ctx1, {
+                        type: 'line',
+                        data: {
+                            labels: [t.chart_label_q1, t.chart_label_q2, t.chart_label_q3, t.chart_label_q4],
+                            datasets: [
+                                { label: t.chart_label_revenue, data: [210, 238, 256, 284.7],
+                                    borderColor: c.accent, backgroundColor: c.accentLight, fill: true,
+                                    tension: 0.4, pointRadius: 5, pointBackgroundColor: c.accent,
+                                    borderWidth: 3 },
+                                { label: t.chart_label_forecast, data: [205, 230, 250, 270],
+                                    borderColor: c.amber, backgroundColor: 'transparent',
+                                    borderDash: [6, 4], tension: 0.4, pointRadius: 4,
+                                    pointBackgroundColor: c.amber, borderWidth: 2 },
+                            ]
+                        },
+                        options: baseOptions(),
+                    });
+                }
+                const ctx2 = document.getElementById('chartBizUnits')?.getContext('2d');
+                if (ctx2 && !chartInstances['bizUnits']) {
+                    chartInstances['bizUnits'] = new Chart(ctx2, {
+                        type: 'bar',
+                        data: {
+                            labels: [t.chart_label_enterprise, t.chart_label_midmarket, t.chart_label_smb,
+                                t.chart_label_partner
+                            ],
+                            datasets: [
+                                { label: t.chart_label_revenue + ' ($M)', data: [142, 68, 45, 29.7],
+                                    backgroundColor: [c.accent, c.green, c.amber, c.purple],
+                                    borderRadius: 8, borderSkipped: false },
+                            ]
+                        },
+                        options: baseOptions({ legend: { display: false } }),
+                    });
+                }
+                const ctx3 = document.getElementById('chartRevenueLine')?.getContext('2d');
+                if (ctx3 && !chartInstances['revenueLine']) {
+                    chartInstances['revenueLine'] = new Chart(ctx3, {
+                        type: 'line',
+                        data: {
+                            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct',
+                                'Nov', 'Dec'
+                            ],
+                            datasets: [
+                                { label: t.chart_label_2024, data: [18, 20, 22, 24, 23, 25, 27, 28, 26, 29,
+                                        30, 31
+                                    ], borderColor: c.text, borderDash: [4, 3], tension: 0.35,
+                                    pointRadius: 2, borderWidth: 2 },
+                                { label: t.chart_label_2025, data: [21, 22, 24, 25, 26, 28, 29, 30, 28, 31,
+                                        33, 35
+                                    ], borderColor: c.accent, backgroundColor: c.accentLight, fill: true,
+                                    tension: 0.35, pointRadius: 4, pointBackgroundColor: c.accent,
+                                    borderWidth: 3 },
+                            ]
+                        },
+                        options: baseOptions(),
+                    });
+                }
+                const ctx4 = document.getElementById('chartRevenueBar')?.getContext('2d');
+                if (ctx4 && !chartInstances['revenueBar']) {
+                    chartInstances['revenueBar'] = new Chart(ctx4, {
+                        type: 'bar',
+                        data: {
+                            labels: [t.chart_label_saas, t.chart_label_services, t.chart_label_hardware,
+                                t.chart_label_support
+                            ],
+                            datasets: [
+                                { label: t.chart_label_revenue + ' ($M)', data: [156, 62, 38, 28.7],
+                                    backgroundColor: [c.accent, c.green, c.amber, c.purple],
+                                    borderRadius: 8, borderSkipped: false },
+                            ]
+                        },
+                        options: baseOptions({ legend: { display: false } }),
+                    });
+                }
+                const ctx5 = document.getElementById('chartSalesRegional')?.getContext('2d');
+                if (ctx5 && !chartInstances['salesRegional']) {
+                    chartInstances['salesRegional'] = new Chart(ctx5, {
+                        type: 'bar',
+                        data: {
+                            labels: [t.chart_label_na, t.chart_label_emea, t.chart_label_apac,
+                                t.chart_label_latam, t.chart_label_mena
+                            ],
+                            datasets: [
+                                { label: t.chart_label_sales + ' ($M)', data: [128, 76, 52, 18, 10.7],
+                                    backgroundColor: [c.accent, c.green, c.amber, c.purple, c.cyan],
+                                    borderRadius: 8, borderSkipped: false },
+                            ]
+                        },
+                        options: baseOptions({ legend: { display: false }, indexAxis: 'y' }),
+                    });
+                }
+                const ctx6 = document.getElementById('chartSalesCategory')?.getContext('2d');
+                if (ctx6 && !chartInstances['salesCategory']) {
+                    chartInstances['salesCategory'] = new Chart(ctx6, {
+                        type: 'doughnut',
+                        data: {
+                            labels: [t.chart_label_enterprise_sw, t.chart_label_cloud,
+                                t.chart_label_prof_svcs, t.chart_label_hw, t.chart_label_support_svc
+                            ],
+                            datasets: [
+                                { data: [42, 28, 15, 10, 5], backgroundColor: [c.accent, c.green, c.amber,
+                                        c.purple, c.cyan
+                                    ], borderWidth: 0, borderRadius: 4 },
+                            ]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            animation: { duration: 800, easing: 'easeOutQuart' },
+                            plugins: {
+                                legend: { labels: { color: c.text, font: { ...baseFont(), size: 10 },
+                                        usePointStyle: true, pointStyleWidth: 8, padding: 12 } },
+                            },
+                        },
+                    });
+                }
+                const ctx7 = document.getElementById('chartRetention')?.getContext('2d');
+                if (ctx7 && !chartInstances['retention']) {
+                    chartInstances['retention'] = new Chart(ctx7, {
+                        type: 'line',
+                        data: {
+                            labels: ['Mo 1', 'Mo 3', 'Mo 6', 'Mo 9', 'Mo 12', 'Mo 18', 'Mo 24'],
+                            datasets: [
+                                { label: t.chart_label_retention, data: [100, 97, 94, 92, 90, 87, 85],
+                                    borderColor: c.green, backgroundColor: c.greenLight, fill: true,
+                                    tension: 0.4, pointRadius: 4, pointBackgroundColor: c.green,
+                                    borderWidth: 3 },
+                                { label: t.chart_label_industry_avg, data: [100, 93, 86, 80, 75, 68, 62],
+                                    borderColor: c.text, borderDash: [5, 3], tension: 0.4, pointRadius: 2,
+                                    borderWidth: 2, fill: false },
+                            ]
+                        },
+                        options: baseOptions(),
+                    });
+                }
+                const ctx8 = document.getElementById('chartDeptPerf')?.getContext('2d');
+                if (ctx8 && !chartInstances['deptPerf']) {
+                    chartInstances['deptPerf'] = new Chart(ctx8, {
+                        type: 'bar',
+                        data: {
+                            labels: [t.chart_label_sales, t.chart_label_marketing, t.chart_label_engineering,
+                                t.chart_label_support_dept, t.chart_label_finance, t.chart_label_hr
+                            ],
+                            datasets: [
+                                { label: t.chart_label_revenue, data: [94, 88, 91, 85, 90, 82],
+                                    backgroundColor: [c.accent, c.green, c.accent, c.amber, c.green,
+                                        c.amber
+                                    ], borderRadius: 8, borderSkipped: false },
+                            ]
+                        },
+                        options: baseOptions({ legend: { display: false } }),
+                    });
+                }
+                const ctx9 = document.getElementById('chartFinancial')?.getContext('2d');
+                if (ctx9 && !chartInstances['financial']) {
+                    chartInstances['financial'] = new Chart(ctx9, {
+                        type: 'line',
+                        data: {
+                            labels: [t.chart_label_q1, t.chart_label_q2, t.chart_label_q3, t.chart_label_q4,
+                                'Q1F', 'Q2F'
+                            ],
+                            datasets: [
+                                { label: t.chart_label_profit, data: [52, 58, 62, 67.8, 71, 76],
+                                    borderColor: c.green, backgroundColor: c.greenLight, fill: true,
+                                    tension: 0.35, pointRadius: 5, pointBackgroundColor: c.green,
+                                    borderWidth: 3 },
+                                { label: t.chart_label_expenses, data: [158, 180, 194, 216.9, 225, 238],
+                                    borderColor: c.red, backgroundColor: 'rgba(239,68,68,0.1)',
+                                    fill: true, tension: 0.35, pointRadius: 4,
+                                    pointBackgroundColor: c.red, borderWidth: 2 },
+                                { label: t.chart_label_forecast_profit, data: [null, null, null, null, 71,
+                                        76
+                                    ], borderColor: c.green, borderDash: [6, 4], tension: 0.35,
+                                    pointRadius: 5, pointBackgroundColor: c.green, borderWidth: 3,
+                                    fill: false },
+                            ]
+                        },
+                        options: baseOptions(),
+                    });
+                }
+            }
+
+            function updateAllChartThemes() {
+                const c = getChartColors();
+                Object.values(chartInstances).forEach(chart => {
+                    if (!chart || !chart.options) return;
+                    if (chart.options.scales) {
+                        ['x', 'y'].forEach(axis => {
+                            if (chart.options.scales[axis]) {
+                                chart.options.scales[axis].ticks.color = c.text;
+                                chart.options.scales[axis].grid.color = c.grid;
+                                chart.options.scales[axis].border.color = c.grid;
+                            }
+                        });
+                    }
+                    if (chart.options.plugins?.legend?.labels) {
+                        chart.options.plugins.legend.labels.color = c.text;
+                    }
+                    if (chart.options.plugins?.tooltip) {
+                        const isDark = getTheme() === 'dark';
+                        chart.options.plugins.tooltip.backgroundColor = isDark ?
+                            'rgba(18,24,38,0.95)' : 'rgba(255,255,255,0.95)';
+                        chart.options.plugins.tooltip.titleColor = c.text;
+                        chart.options.plugins.tooltip.bodyColor = c.text;
+                    }
+                    chart.update('none');
+                });
+            }
+
+            function updateRevenueChart(period) {
+                const chart = chartInstances['revenueLine'];
+                if (!chart) return;
+                const datasets = {
+                    monthly: {
+                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov',
+                            'Dec'
+                        ],
+                        data2024: [18, 20, 22, 24, 23, 25, 27, 28, 26, 29, 30, 31],
+                        data2025: [21, 22, 24, 25, 26, 28, 29, 30, 28, 31, 33, 35],
+                    },
+                    quarterly: { labels: ['Q1', 'Q2', 'Q3', 'Q4'], data2024: [60, 72, 81, 90], data2025: [67,
+                            79, 87, 99
+                        ] },
+                    yearly: { labels: ['2021', '2022', '2023', '2024', '2025'], data2024: [180, 210, 250, 303,
+                            340
+                        ], data2025: [195, 225, 268, 320, 360] },
+                };
+                const d = datasets[period] || datasets['monthly'];
+                chart.data.labels = d.labels;
+                chart.data.datasets[0].data = period === 'yearly' ? d.data2024 : d.data2024;
+                chart.data.datasets[1].data = period === 'yearly' ? d.data2025 : d.data2025;
+                chart.update('active');
+            }
+
+            function updateSalesChart(region) {
+                const chart = chartInstances['salesRegional'];
+                if (!chart) return;
+                const regionData = {
+                    all: { labels: ['N. America', 'EMEA', 'APAC', 'LATAM', 'MENA'], data: [128, 76, 52, 18,
+                            10.7
+                        ] },
+                    na: { labels: ['US East', 'US West', 'Canada', 'US Central'], data: [52, 38, 22, 16] },
+                    emea: { labels: ['UK', 'Germany', 'France', 'Nordics', 'UAE'], data: [28, 22, 14, 8, 4] },
+                    apac: { labels: ['Japan', 'Australia', 'Singapore', 'India', 'Korea'], data: [18, 14, 10,
+                            7, 3
+                        ] },
+                };
+                const d = regionData[region] || regionData['all'];
+                chart.data.labels = d.labels;
+                chart.data.datasets[0].data = d.data;
+                chart.update('active');
+            }
+
+            function init() {
+                const savedLang = localStorage.getItem('apex-lang') || 'en';
+                setLang(savedLang);
+                createAllCharts();
+                const firstSlide = slideEls[0];
+                if (firstSlide && firstSlide.classList.contains('active')) {
+                    animateCountersInSlide(firstSlide);
+                }
+                progressFill.style.width = ((currentSlide + 1) / totalSlides * 100) + '%';
+            }
+
+            function waitForChart(cb, attempts = 0) {
+                if (typeof Chart !== 'undefined') { cb(); return; }
+                if (attempts > 30) { console.warn('Chart.js failed to load'); return; }
+                setTimeout(() => waitForChart(cb, attempts + 1), 200);
+            }
+            waitForChart(init);
+
+            let resizeTimeout;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(() => {
+                    Object.values(chartInstances).forEach(ch => { if (ch && ch.resize) ch.resize(); });
+                }, 250);
+            });
+
+            window.execPresentation = {
+                navigateTo,
+                toggleTheme,
+                toggleFullscreen,
+                exportPresentation,
+                getCurrentSlide: () => currentSlide,
+                getTotalSlides: () => totalSlides,
+                showToast,
+                setLang,
+            };
+        })();
+    </script>
+</body>
+</html>
