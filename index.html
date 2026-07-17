@@ -134,6 +134,7 @@
             flex-shrink: 0;
             transition: all var(--transition-smooth);
             position: relative;
+            padding-bottom: env(safe-area-inset-bottom, 0px);
         }
         .sidebar__brand {
             padding: 24px 22px 18px;
@@ -141,6 +142,7 @@
             align-items: center;
             gap: 10px;
             border-bottom: 1px solid var(--border-subtle);
+            flex-shrink: 0;
         }
         .sidebar__logo {
             width: 36px;
@@ -177,6 +179,7 @@
             display: flex;
             flex-direction: column;
             gap: 3px;
+            min-height: 0;
         }
         .sidebar__nav-item {
             display: flex;
@@ -196,6 +199,7 @@
             width: 100%;
             text-align: left;
             font-family: inherit;
+            flex-shrink: 0;
         }
         .sidebar__nav-item:hover {
             background: var(--bg-card);
@@ -232,17 +236,20 @@
                 box-shadow: 0 0 16px currentColor, 0 0 24px currentColor;
             }
         }
-        .sidebar__footer {
-            padding: 14px 16px;
-            border-top: 1px solid var(--border-subtle);
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
+
+        /* Separator inside nav for action buttons */
+        .sidebar__nav-separator {
+            height: 1px;
+            background: var(--border-subtle);
+            margin: 8px 6px;
+            flex-shrink: 0;
         }
-        .sidebar__btn {
+
+        /* Action buttons styled as nav items but slightly different */
+        .sidebar__action-btn {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             padding: 9px 14px;
             border-radius: var(--radius-sm);
             cursor: pointer;
@@ -255,18 +262,35 @@
             font-family: inherit;
             width: 100%;
             text-align: left;
+            flex-shrink: 0;
+            letter-spacing: -0.01em;
         }
-        .sidebar__btn:hover {
+        .sidebar__action-btn:hover {
             color: var(--text-primary);
             border-color: var(--text-muted);
             box-shadow: var(--card-shadow);
+            background: var(--bg-card-solid);
+        }
+        .sidebar__action-btn .action-icon {
+            font-size: 0.95rem;
+            flex-shrink: 0;
+            width: 20px;
+            text-align: center;
+            line-height: 1;
+        }
+
+        /* Slim footer: only progress bar */
+        .sidebar__footer {
+            padding: 10px 16px 14px;
+            border-top: 1px solid var(--border-subtle);
+            flex-shrink: 0;
+            padding-bottom: calc(14px + env(safe-area-inset-bottom, 0px));
         }
         .sidebar__progress {
             height: 3px;
             background: var(--border-subtle);
             border-radius: 10px;
             overflow: hidden;
-            margin-top: 4px;
         }
         .sidebar__progress-fill {
             height: 100%;
@@ -799,7 +823,7 @@
         body[dir="rtl"] .sidebar__nav-item {
             text-align: right;
         }
-        body[dir="rtl"] .sidebar__btn {
+        body[dir="rtl"] .sidebar__action-btn {
             text-align: right;
         }
         body[dir="rtl"] .table-premium th,
@@ -889,23 +913,34 @@
             .sidebar__brand-text,
             .sidebar__brand-sub,
             .sidebar__nav-item span:not(.sidebar__nav-dot),
-            .sidebar__btn span {
+            .sidebar__action-btn span:not(.action-icon) {
                 display: none;
             }
             .sidebar__nav-item {
                 justify-content: center;
                 padding: 12px;
             }
+            .sidebar__action-btn {
+                justify-content: center;
+                padding: 10px;
+            }
+            .sidebar__action-btn .action-icon {
+                margin: 0;
+            }
             .sidebar__brand {
                 justify-content: center;
                 padding: 16px 8px;
             }
-            .sidebar__footer {
-                align-items: center;
+            .sidebar__nav {
+                padding: 8px 6px;
+                gap: 2px;
             }
-            .sidebar__btn {
-                justify-content: center;
-                padding: 10px;
+            .sidebar__nav-separator {
+                margin: 6px 4px;
+            }
+            .sidebar__footer {
+                padding: 8px 10px 10px;
+                padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
             }
             .slide {
                 padding: 14px 12px 20px;
@@ -1009,13 +1044,15 @@
             <button class="sidebar__nav-item" data-slide="6"><span class="sidebar__nav-dot"></span><span data-i18n="nav_financial">Financial Overview</span></button>
             <button class="sidebar__nav-item" data-slide="7"><span class="sidebar__nav-dot"></span><span data-i18n="nav_insights">Strategic Insights</span></button>
             <button class="sidebar__nav-item" data-slide="8"><span class="sidebar__nav-dot"></span><span data-i18n="nav_decision">Decision & Action</span></button>
+            <!-- Separator and action buttons moved here from footer -->
+            <div class="sidebar__nav-separator"></div>
+            <button class="sidebar__action-btn" id="btnTheme" title="Toggle Dark/Light Mode"><span class="action-icon">🌓</span> <span data-i18n="btn_theme">Toggle Theme</span></button>
+            <button class="sidebar__action-btn" id="btnFullscreen" title="Fullscreen (F)"><span class="action-icon">⛶</span> <span data-i18n="btn_fullscreen">Fullscreen</span></button>
+            <button class="sidebar__action-btn" id="btnExport" title="Export / Print (E)"><span class="action-icon">📄</span> <span data-i18n="btn_export">Export / Print</span></button>
+            <button class="sidebar__action-btn" id="btnLang" title="تبديل اللغة"><span class="action-icon">🌐</span> <span data-i18n="btn_lang">العربية</span></button>
         </nav>
         <div class="sidebar__footer">
             <div class="sidebar__progress"><div class="sidebar__progress-fill" id="progressFill" style="width:11%"></div></div>
-            <button class="sidebar__btn" id="btnTheme" title="Toggle Dark/Light Mode">🌓 <span data-i18n="btn_theme">Toggle Theme</span></button>
-            <button class="sidebar__btn" id="btnFullscreen" title="Fullscreen (F)">⛶ <span data-i18n="btn_fullscreen">Fullscreen</span></button>
-            <button class="sidebar__btn" id="btnExport" title="Export / Print (E)">📄 <span data-i18n="btn_export">Export / Print</span></button>
-            <button class="sidebar__btn" id="btnLang" title="تبديل اللغة">🌐 <span data-i18n="btn_lang">العربية</span></button>
         </div>
     </aside>
 
@@ -1685,7 +1722,6 @@
                 document.body.dir = lang === 'ar' ? 'rtl' : 'ltr';
                 applyTranslations(lang);
                 updateChartLanguage(lang);
-                // Ensure the language button text reflects the other language
                 const btnLangSpan = document.querySelector('#btnLang span[data-i18n="btn_lang"]');
                 if (btnLangSpan) btnLangSpan.textContent = lang === 'ar' ? 'English' : 'العربية';
                 showToast(lang === 'ar' ? 'تم تغيير اللغة إلى العربية' : 'Language switched to English');
@@ -1696,7 +1732,6 @@
                 document.querySelectorAll('[data-i18n]').forEach(el => {
                     const key = el.getAttribute('data-i18n');
                     if (t[key] !== undefined) {
-                        // FIX: Use innerHTML for translations that contain HTML tags, textContent for plain text
                         if (/<[a-z][\s\S]*>/i.test(t[key])) {
                             el.innerHTML = t[key];
                         } else {
@@ -1709,53 +1744,30 @@
             function updateChartLanguage(lang) {
                 const t = translations[lang] || translations.en;
                 const chartLabelMap = {
-                    'bizOverview': {
-                        datasets: [{ label: t.chart_label_revenue }, { label: t.chart_label_forecast }],
-                        labels: [t.chart_label_q1, t.chart_label_q2, t.chart_label_q3, t.chart_label_q4]
-                    },
-                    'bizUnits': {
-                        datasets: [{ label: t.chart_label_revenue + ' ($M)' }],
-                        labels: [t.chart_label_enterprise, t.chart_label_midmarket, t.chart_label_smb,
-                            t.chart_label_partner
-                        ]
-                    },
-                    'revenueLine': {
-                        datasets: [{ label: t.chart_label_2024 }, { label: t.chart_label_2025 }],
-                    },
-                    'revenueBar': {
-                        datasets: [{ label: t.chart_label_revenue + ' ($M)' }],
-                        labels: [t.chart_label_saas, t.chart_label_services, t.chart_label_hardware,
-                            t.chart_label_support
-                        ]
-                    },
-                    'salesRegional': {
-                        datasets: [{ label: t.chart_label_sales + ' ($M)' }],
-                        labels: [t.chart_label_na, t.chart_label_emea, t.chart_label_apac, t.chart_label_latam,
-                            t.chart_label_mena
-                        ]
-                    },
-                    'salesCategory': {
-                        datasets: [{ label: '' }],
-                        labels: [t.chart_label_enterprise_sw, t.chart_label_cloud, t.chart_label_prof_svcs,
-                            t.chart_label_hw, t.chart_label_support_svc
-                        ]
-                    },
-                    'retention': {
-                        datasets: [{ label: t.chart_label_retention }, { label: t.chart_label_industry_avg }],
-                    },
-                    'deptPerf': {
-                        datasets: [{ label: t.chart_label_revenue }],
-                        labels: [t.chart_label_sales, t.chart_label_marketing, t.chart_label_engineering,
-                            t.chart_label_support_dept, t.chart_label_finance, t.chart_label_hr
-                        ]
-                    },
-                    'financial': {
-                        datasets: [{ label: t.chart_label_profit }, { label: t.chart_label_expenses }, { label: t
-                                .chart_label_forecast_profit }],
-                        labels: [t.chart_label_q1, t.chart_label_q2, t.chart_label_q3, t.chart_label_q4, 'Q1F',
-                            'Q2F'
-                        ]
-                    }
+                    'bizOverview': { datasets: [{ label: t.chart_label_revenue }, { label: t.chart_label_forecast }],
+                        labels: [t.chart_label_q1, t.chart_label_q2, t.chart_label_q3, t.chart_label_q4] },
+                    'bizUnits': { datasets: [{ label: t.chart_label_revenue + ' ($M)' }], labels: [t.chart_label_enterprise,
+                            t.chart_label_midmarket, t.chart_label_smb, t.chart_label_partner
+                        ] },
+                    'revenueLine': { datasets: [{ label: t.chart_label_2024 }, { label: t.chart_label_2025 }], },
+                    'revenueBar': { datasets: [{ label: t.chart_label_revenue + ' ($M)' }], labels: [t.chart_label_saas,
+                            t.chart_label_services, t.chart_label_hardware, t.chart_label_support
+                        ] },
+                    'salesRegional': { datasets: [{ label: t.chart_label_sales + ' ($M)' }], labels: [t.chart_label_na,
+                            t.chart_label_emea, t.chart_label_apac, t.chart_label_latam, t.chart_label_mena
+                        ] },
+                    'salesCategory': { datasets: [{ label: '' }], labels: [t.chart_label_enterprise_sw,
+                            t.chart_label_cloud, t.chart_label_prof_svcs, t.chart_label_hw, t.chart_label_support_svc
+                        ] },
+                    'retention': { datasets: [{ label: t.chart_label_retention }, { label: t.chart_label_industry_avg }], },
+                    'deptPerf': { datasets: [{ label: t.chart_label_revenue }], labels: [t.chart_label_sales,
+                            t.chart_label_marketing, t.chart_label_engineering, t.chart_label_support_dept,
+                            t.chart_label_finance, t.chart_label_hr
+                        ] },
+                    'financial': { datasets: [{ label: t.chart_label_profit }, { label: t.chart_label_expenses }, { label: t
+                                .chart_label_forecast_profit }], labels: [t.chart_label_q1, t.chart_label_q2, t.chart_label_q3,
+                            t.chart_label_q4, 'Q1F', 'Q2F'
+                        ] }
                 };
                 Object.keys(chartLabelMap).forEach(chartKey => {
                     const chart = chartInstances[chartKey];
@@ -1868,8 +1880,8 @@
             });
 
             document.addEventListener('keydown', (e) => {
-                if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target
-                    .isContentEditable) return;
+                if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.isContentEditable)
+                    return;
                 switch (e.key) {
                     case 'ArrowRight':
                     case 'ArrowDown':
@@ -1946,8 +1958,7 @@
                 group.addEventListener('click', (e) => {
                     const pill = e.target.closest('.filter-pill');
                     if (!pill) return;
-                    group.querySelectorAll('.filter-pill').forEach(p => p.classList.remove(
-                    'active'));
+                    group.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
                     pill.classList.add('active');
                     const dataset = pill.dataset;
                     if (dataset.period) updateRevenueChart(dataset.period);
@@ -2018,7 +2029,7 @@
                                 { label: t.chart_label_revenue, data: [210, 238, 256, 284.7],
                                     borderColor: c.accent, backgroundColor: c.accentLight, fill: true,
                                     tension: 0.4, pointRadius: 5, pointBackgroundColor: c.accent,
-                                    borderWidth: 3 },
+                                borderWidth: 3 },
                                 { label: t.chart_label_forecast, data: [205, 230, 250, 270],
                                     borderColor: c.amber, backgroundColor: 'transparent',
                                     borderDash: [6, 4], tension: 0.4, pointRadius: 4,
@@ -2062,7 +2073,7 @@
                                         33, 35
                                     ], borderColor: c.accent, backgroundColor: c.accentLight, fill: true,
                                     tension: 0.35, pointRadius: 4, pointBackgroundColor: c.accent,
-                                    borderWidth: 3 },
+                                borderWidth: 3 },
                             ]
                         },
                         options: baseOptions(),
@@ -2137,7 +2148,7 @@
                                 { label: t.chart_label_retention, data: [100, 97, 94, 92, 90, 87, 85],
                                     borderColor: c.green, backgroundColor: c.greenLight, fill: true,
                                     tension: 0.4, pointRadius: 4, pointBackgroundColor: c.green,
-                                    borderWidth: 3 },
+                                borderWidth: 3 },
                                 { label: t.chart_label_industry_avg, data: [100, 93, 86, 80, 75, 68, 62],
                                     borderColor: c.text, borderDash: [5, 3], tension: 0.4, pointRadius: 2,
                                     borderWidth: 2, fill: false },
@@ -2176,7 +2187,7 @@
                                 { label: t.chart_label_profit, data: [52, 58, 62, 67.8, 71, 76],
                                     borderColor: c.green, backgroundColor: c.greenLight, fill: true,
                                     tension: 0.35, pointRadius: 5, pointBackgroundColor: c.green,
-                                    borderWidth: 3 },
+                                borderWidth: 3 },
                                 { label: t.chart_label_expenses, data: [158, 180, 194, 216.9, 225, 238],
                                     borderColor: c.red, backgroundColor: 'rgba(239,68,68,0.1)',
                                     fill: true, tension: 0.35, pointRadius: 4,
@@ -2224,19 +2235,16 @@
                 const chart = chartInstances['revenueLine'];
                 if (!chart) return;
                 const datasets = {
-                    monthly: {
-                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov',
+                    monthly: { labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov',
                             'Dec'
-                        ],
-                        data2024: [18, 20, 22, 24, 23, 25, 27, 28, 26, 29, 30, 31],
-                        data2025: [21, 22, 24, 25, 26, 28, 29, 30, 28, 31, 33, 35],
-                    },
-                    quarterly: { labels: ['Q1', 'Q2', 'Q3', 'Q4'], data2024: [60, 72, 81, 90], data2025: [67,
-                            79, 87, 99
+                        ], data2024: [18, 20, 22, 24, 23, 25, 27, 28, 26, 29, 30, 31], data2025: [21, 22, 24, 25,
+                            26, 28, 29, 30, 28, 31, 33, 35
                         ] },
-                    yearly: { labels: ['2021', '2022', '2023', '2024', '2025'], data2024: [180, 210, 250, 303,
-                            340
-                        ], data2025: [195, 225, 268, 320, 360] },
+                    quarterly: { labels: ['Q1', 'Q2', 'Q3', 'Q4'], data2024: [60, 72, 81, 90], data2025: [67, 79, 87,
+                            99
+                        ] },
+                    yearly: { labels: ['2021', '2022', '2023', '2024', '2025'], data2024: [180, 210, 250, 303, 340],
+                        data2025: [195, 225, 268, 320, 360] },
                 };
                 const d = datasets[period] || datasets['monthly'];
                 chart.data.labels = d.labels;
@@ -2249,14 +2257,10 @@
                 const chart = chartInstances['salesRegional'];
                 if (!chart) return;
                 const regionData = {
-                    all: { labels: ['N. America', 'EMEA', 'APAC', 'LATAM', 'MENA'], data: [128, 76, 52, 18,
-                            10.7
-                        ] },
+                    all: { labels: ['N. America', 'EMEA', 'APAC', 'LATAM', 'MENA'], data: [128, 76, 52, 18, 10.7] },
                     na: { labels: ['US East', 'US West', 'Canada', 'US Central'], data: [52, 38, 22, 16] },
                     emea: { labels: ['UK', 'Germany', 'France', 'Nordics', 'UAE'], data: [28, 22, 14, 8, 4] },
-                    apac: { labels: ['Japan', 'Australia', 'Singapore', 'India', 'Korea'], data: [18, 14, 10,
-                            7, 3
-                        ] },
+                    apac: { labels: ['Japan', 'Australia', 'Singapore', 'India', 'Korea'], data: [18, 14, 10, 7, 3] },
                 };
                 const d = regionData[region] || regionData['all'];
                 chart.data.labels = d.labels;
