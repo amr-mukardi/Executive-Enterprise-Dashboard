@@ -1,11 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" dir="ltr" data-theme="dark">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#080c14">
     <title>Executive Business Presentation | Q4 2025</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js">
-    </script>
+    <script>try{var _d=document.documentElement,_l=localStorage.getItem('apex-lang')||'en',_t=localStorage.getItem('apex-theme');_d.lang=_l;_d.dir=_l==='ar'?'rtl':'ltr';if(_t)_d.setAttribute('data-theme',_t)}catch(e){}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" onerror="var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js';document.head.appendChild(s)"></script>
     <style>
         :root {
             --bg-primary: #080c14;
@@ -17,7 +21,7 @@
             --border-card: rgba(255, 255, 255, 0.1);
             --text-primary: #e8ecf2;
             --text-secondary: #9aa4b8;
-            --text-muted: #5f6b7c;
+            --text-muted: #7d8aa0;
             --accent: #4d8cf5;
             --accent-glow: rgba(77, 140, 245, 0.3);
             --accent-secondary: #6c5ce7;
@@ -54,7 +58,7 @@
             --border-card: rgba(0, 0, 0, 0.08);
             --text-primary: #1a1f2e;
             --text-secondary: #4a5568;
-            --text-muted: #8896a8;
+            --text-muted: #64748b;
             --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
             --card-shadow-hover: 0 8px 36px rgba(0, 0, 0, 0.1);
             --accent-glow: rgba(59, 130, 246, 0.2);
@@ -78,7 +82,7 @@
             font-family: var(--font-display);
             background: var(--bg-primary);
             color: var(--text-primary);
-            height: 100vh;
+            height: 100dvh;
             display: flex;
             overflow: hidden;
             transition: background var(--transition-smooth), color var(--transition-smooth);
@@ -123,11 +127,11 @@
 
         .sidebar {
             width: var(--sidebar-width);
-            height: 100vh;
+            height: 100dvh;
             background: var(--bg-sidebar);
             backdrop-filter: var(--glass-blur);
             -webkit-backdrop-filter: var(--glass-blur);
-            border-right: 1px solid var(--border-subtle);
+            border-inline-end: 1px solid var(--border-subtle);
             display: flex;
             flex-direction: column;
             z-index: 100;
@@ -197,7 +201,7 @@
             border: 1px solid transparent;
             background: transparent;
             width: 100%;
-            text-align: left;
+            text-align: start;
             font-family: inherit;
             flex-shrink: 0;
         }
@@ -261,7 +265,7 @@
             color: var(--text-secondary);
             font-family: inherit;
             width: 100%;
-            text-align: left;
+            text-align: start;
             flex-shrink: 0;
             letter-spacing: -0.01em;
         }
@@ -302,7 +306,7 @@
 
         .main {
             flex: 1;
-            height: 100vh;
+            height: 100dvh;
             position: relative;
             overflow: hidden;
             z-index: 1;
@@ -655,7 +659,7 @@
         .toast-container {
             position: fixed;
             bottom: 24px;
-            right: 24px;
+            inset-inline-end: 24px;
             z-index: 9999;
             display: flex;
             flex-direction: column;
@@ -700,7 +704,7 @@
             padding: 18px 20px;
             transition: all var(--transition-fast);
             cursor: default;
-            border-left: 3px solid var(--accent);
+            border-inline-start: 3px solid var(--accent);
             box-shadow: var(--card-shadow);
         }
         .insight-card:hover {
@@ -708,10 +712,10 @@
             transform: translateX(3px);
         }
         .insight-card.green {
-            border-left-color: var(--green);
+            border-inline-start-color: var(--green);
         }
         .insight-card.amber {
-            border-left-color: var(--amber);
+            border-inline-start-color: var(--amber);
         }
         .insight-card__title {
             font-weight: 600;
@@ -734,7 +738,7 @@
             font-size: 0.8rem;
         }
         .table-premium th {
-            text-align: left;
+            text-align: start;
             padding: 10px 14px;
             font-weight: 600;
             color: var(--text-muted);
@@ -748,7 +752,7 @@
             border-bottom: 1px solid var(--border-subtle);
             color: var(--text-primary);
             font-weight: 500;
-            text-align: left;
+            text-align: start;
         }
         .table-premium tr {
             transition: background var(--transition-fast);
@@ -761,7 +765,7 @@
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            margin-right: 6px;
+            margin-inline-end: 6px;
             vertical-align: middle;
         }
         .status-dot.on-track {
@@ -812,78 +816,50 @@
             }
         }
 
-        /* ===== RTL SUPPORT (Arabic) ===== */
-        body[dir="rtl"] {
-            flex-direction: row-reverse;
-        }
-        body[dir="rtl"] .sidebar {
-            border-right: none;
-            border-left: 1px solid var(--border-subtle);
-        }
-        body[dir="rtl"] .sidebar__nav-item {
-            text-align: right;
-        }
-        body[dir="rtl"] .sidebar__action-btn {
-            text-align: right;
-        }
-        body[dir="rtl"] .table-premium th,
-        body[dir="rtl"] .table-premium td {
-            text-align: right;
-        }
-        body[dir="rtl"] .status-dot {
-            margin-right: 0;
-            margin-left: 6px;
-        }
-        body[dir="rtl"] .insight-card {
-            border-left: none;
-            border-right: 3px solid var(--accent);
-        }
-        body[dir="rtl"] .insight-card.green {
-            border-right-color: var(--green);
-        }
-        body[dir="rtl"] .insight-card.amber {
-            border-right-color: var(--amber);
-        }
-        body[dir="rtl"] .insight-card:hover {
-            transform: translateX(-3px);
-        }
-        body[dir="rtl"] .chart-wrap {
-            direction: ltr;
-        }
-        body[dir="rtl"] .kpi-card {
-            text-align: right;
-        }
-        body[dir="rtl"] .kpi-card__icon {
-            margin-left: auto;
-            margin-right: 0;
-        }
-        body[dir="rtl"] .slide__header {
-            flex-direction: row;
-        }
-        body[dir="rtl"] .toast-container {
-            right: auto;
-            left: 24px;
-        }
-        @keyframes slideInLeft {
-            from {
-                transform: translateX(-120%);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-        body[dir="rtl"] .toast {
-            animation: slideInLeft 0.35s cubic-bezier(0.4, 0, 0.2, 1), fadeOut 0.3s 2.2s forwards;
-        }
+        /* ===== RTL SUPPORT (Arabic) =====
+   الاتجاه يُضبط على <html dir="rtl"> ويعتمد على الخصائص المنطقية (start/end)،
+   فينعكس تخطيط flex تلقائيًا دون الحاجة إلى row-reverse. */
+html[dir="rtl"] { --font-display: 'Cairo', 'Tajawal', 'Segoe UI', Tahoma, system-ui, sans-serif; }
+html[dir="rtl"] * { letter-spacing: 0 !important; text-transform: none !important; }
+html[dir="rtl"] .slide__title { line-height: 1.45; }
+html[dir="rtl"] .insight-card:hover { transform: translateX(-3px); }
+html[dir="rtl"] .kpi-card__value { direction: ltr; text-align: right; }
+html[dir="rtl"] .chart-wrap { direction: ltr; }
+@keyframes slideInLeft {
+    from { transform: translateX(-120%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+html[dir="rtl"] .toast { animation: slideInLeft 0.35s cubic-bezier(0.4, 0, 0.2, 1), fadeOut 0.3s 2.2s forwards; }
 
-        /* ===== RESPONSIVE ===== */
+/* ===== SIDEBAR DRAWER ===== */
+.sidebar { position: fixed; inset-block: 0; inset-inline-start: 0; width: min(280px, 84vw); height: 100dvh; z-index: 200; background: var(--bg-card-solid); transform: translateX(-105%); visibility: hidden; transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), visibility 0s 0.35s; }
+html[dir="rtl"] .sidebar { transform: translateX(105%); }
+body.sidebar-open .sidebar { transform: none; visibility: visible; box-shadow: var(--card-shadow-hover); transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), visibility 0s; }
+.sidebar__brand { padding-inline-start: 70px; min-height: 68px; }
+.sidebar-backdrop { position: fixed; inset: 0; z-index: 150; background: rgba(0, 0, 0, 0.55); opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+body.sidebar-open .sidebar-backdrop { opacity: 1; pointer-events: all; }
+.menu-btn { position: fixed; top: calc(12px + env(safe-area-inset-top, 0px)); inset-inline-start: 12px; z-index: 250; width: 44px; height: 44px; border-radius: var(--radius-sm); border: 1px solid var(--border-card); background: var(--bg-card-solid); color: var(--text-primary); font-size: 1.2rem; line-height: 1; cursor: pointer; box-shadow: var(--card-shadow); font-family: inherit; }
+.menu-btn:hover { border-color: var(--accent); }
+.sidebar { width: min(320px, 76vw); border: none; border-inline-end: 1px solid var(--border-card); }
+body.sidebar-open .sidebar-backdrop { backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); }
+.sidebar__brand { padding-block: 18px; }
+.sidebar__brand-text { font-size: 1.15rem; }
+.sidebar__nav { padding: 14px 18px; gap: 6px; }
+.sidebar__nav-item { padding: 14px 16px; gap: 12px; font-size: 1.05rem; font-weight: 600; border-radius: 14px; }
+.sidebar__nav-icon { font-size: 1.2rem; width: 26px; text-align: center; flex-shrink: 0; }
+.sidebar__nav-item.active { background: var(--accent); color: #fff; border-color: transparent; box-shadow: 0 6px 18px var(--accent-glow); }
+.sidebar__action-btn { padding: 13px 16px; font-size: 0.95rem; border-radius: 14px; }
+.slide__header { padding-inline-start: 56px; min-height: 44px; }
+@media print { .menu-btn, .sidebar-backdrop { display: none !important; } }
+
+/* ===== ACCESSIBILITY ===== */
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
+
+/* ===== RESPONSIVE ===== */
         @media (max-width: 1024px) {
-            .sidebar {
-                width: 200px;
-                --sidebar-width: 200px;
-            }
             .slide {
                 padding: 20px 18px 28px;
             }
@@ -906,42 +882,6 @@
             }
         }
         @media (max-width: 768px) {
-            .sidebar {
-                width: 60px;
-                --sidebar-width: 60px;
-            }
-            .sidebar__brand-text,
-            .sidebar__brand-sub,
-            .sidebar__nav-item span:not(.sidebar__nav-dot),
-            .sidebar__action-btn span:not(.action-icon) {
-                display: none;
-            }
-            .sidebar__nav-item {
-                justify-content: center;
-                padding: 12px;
-            }
-            .sidebar__action-btn {
-                justify-content: center;
-                padding: 10px;
-            }
-            .sidebar__action-btn .action-icon {
-                margin: 0;
-            }
-            .sidebar__brand {
-                justify-content: center;
-                padding: 16px 8px;
-            }
-            .sidebar__nav {
-                padding: 8px 6px;
-                gap: 2px;
-            }
-            .sidebar__nav-separator {
-                margin: 6px 4px;
-            }
-            .sidebar__footer {
-                padding: 8px 10px 10px;
-                padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
-            }
             .slide {
                 padding: 14px 12px 20px;
                 gap: 14px;
@@ -964,10 +904,6 @@
             }
         }
         @media (max-width: 480px) {
-            .sidebar {
-                width: 48px;
-                --sidebar-width: 48px;
-            }
             .kpi-grid {
                 grid-template-columns: 1fr;
             }
@@ -980,20 +916,9 @@
         }
 
         /* ===== FULLSCREEN ===== */
-        body.fullscreen .sidebar {
-            width: 0;
-            overflow: hidden;
-            padding: 0;
-            border: none;
-            opacity: 0;
-            pointer-events: none;
-            --sidebar-width: 0px;
-        }
-        body.fullscreen .slide {
-            padding: 40px 50px;
-        }
+@media (min-width: 769px) { body.fullscreen .slide { padding: 40px 50px; } }
 
-        /* ===== PRINT ===== */
+/* ===== PRINT ===== */
         @media print {
             .sidebar {
                 display: none;
@@ -1019,12 +944,65 @@
                 height: auto !important;
             }
         }
-    </style>
+    /* ===== DRAWER (polish) ===== */
+.sidebar { width: min(320px, 84vw); border-start-end-radius: 24px; border-end-end-radius: 24px; overflow: hidden; }
+.sidebar__brand { background: linear-gradient(180deg, var(--accent-glow), transparent); }
+.sidebar__actions { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+.sidebar__actions .sidebar__action-btn { flex-direction: column; justify-content: center; gap: 6px; padding: 12px 8px; font-size: 0.8rem; text-align: center; }
+.sidebar__actions .action-icon { font-size: 1.25rem; width: auto; }
+.sidebar__counter { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.75rem; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+body.sidebar-open .sidebar__nav { animation: navIn 0.4s 0.08s both; }
+@keyframes navIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+/* ===== RESPONSIVE (extended) ===== */
+.slide > * { width: 100%; max-width: 1480px; margin-inline: auto; }
+.slide { padding-bottom: calc(40px + env(safe-area-inset-bottom, 0px)); }
+.slide__header { padding-inline-start: 0; }
+.slide__header > div:first-child { padding-inline-start: 56px; min-height: 44px; }
+.kpi-card__value { font-size: clamp(1.6rem, 5.5vw, 2.2rem); }
+.table-premium { min-width: 520px; }
+@media (hover: none) { .glass-card:hover, .kpi-card:hover, .insight-card:hover, .funnel__step:hover { transform: none; } }
+@media screen and (max-width: 768px) {
+    .slide__header { gap: 10px; }
+    .slide__badge { font-size: 0.7rem; padding: 5px 10px; }
+    .filter-pills { width: 100%; flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
+    .filter-pills::-webkit-scrollbar { display: none; }
+    .filter-pill { flex-shrink: 0; padding: 9px 16px; }
+    .glass-card { padding: 16px; }
+    .kpi-card { padding: 16px 18px; }
+    .glass-card__title { font-size: 0.72rem; }
+    .funnel__step { padding: 10px 8px; font-size: 0.72rem; min-width: 84px; }
+    .contact-card { padding: 16px; }
+    .bg-orb--3 { display: none; }
+    .bg-orb { filter: blur(80px); }
+}
+@media screen and (max-width: 600px) {
+    .toast-container { inset-inline: 12px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); }
+    .toast { text-align: center; }
+}
+@media screen and (max-width: 480px) {
+    html { font-size: 14px; }
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .kpi-card__delta { font-size: 0.68rem; }
+    .chart-wrap { height: 210px; }
+    .chart-wrap.large { height: 250px; }
+}
+@media screen and (max-width: 340px) { .kpi-grid { grid-template-columns: 1fr; } }
+@media screen and (max-height: 520px) {
+    .sidebar__brand { padding-block: 10px; min-height: 56px; }
+    .sidebar__nav { padding: 8px 14px; }
+    .sidebar__nav-item { padding: 9px 14px; font-size: 0.95rem; }
+    .sidebar__actions { grid-template-columns: repeat(4, 1fr); }
+}
+</style>
 </head>
 <body>
     <div class="bg-orb bg-orb--1"></div>
     <div class="bg-orb bg-orb--2"></div>
     <div class="bg-orb bg-orb--3"></div>
+
+    <button class="menu-btn" id="btnMenu" aria-expanded="false" aria-controls="sidebar" title="Menu" data-i18n-title="title_menu">☰</button>
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
 
     <aside class="sidebar" id="sidebar">
         <div class="sidebar__brand">
@@ -1035,23 +1013,26 @@
             </div>
         </div>
         <nav class="sidebar__nav" id="sidebarNav">
-            <button class="sidebar__nav-item active" data-slide="0"><span class="sidebar__nav-dot"></span><span data-i18n="nav_summary">Executive Summary</span></button>
-            <button class="sidebar__nav-item" data-slide="1"><span class="sidebar__nav-dot"></span><span data-i18n="nav_overview">Business Overview</span></button>
-            <button class="sidebar__nav-item" data-slide="2"><span class="sidebar__nav-dot"></span><span data-i18n="nav_revenue">Revenue Dashboard</span></button>
-            <button class="sidebar__nav-item" data-slide="3"><span class="sidebar__nav-dot"></span><span data-i18n="nav_sales">Sales Performance</span></button>
-            <button class="sidebar__nav-item" data-slide="4"><span class="sidebar__nav-dot"></span><span data-i18n="nav_customers">Customer Analytics</span></button>
-            <button class="sidebar__nav-item" data-slide="5"><span class="sidebar__nav-dot"></span><span data-i18n="nav_operations">Operations</span></button>
-            <button class="sidebar__nav-item" data-slide="6"><span class="sidebar__nav-dot"></span><span data-i18n="nav_financial">Financial Overview</span></button>
-            <button class="sidebar__nav-item" data-slide="7"><span class="sidebar__nav-dot"></span><span data-i18n="nav_insights">Strategic Insights</span></button>
-            <button class="sidebar__nav-item" data-slide="8"><span class="sidebar__nav-dot"></span><span data-i18n="nav_decision">Decision & Action</span></button>
+            <button class="sidebar__nav-item active" data-slide="0"><span class="sidebar__nav-icon" aria-hidden="true">📊</span><span data-i18n="nav_summary">Executive Summary</span></button>
+            <button class="sidebar__nav-item" data-slide="1"><span class="sidebar__nav-icon" aria-hidden="true">🏢</span><span data-i18n="nav_overview">Business Overview</span></button>
+            <button class="sidebar__nav-item" data-slide="2"><span class="sidebar__nav-icon" aria-hidden="true">💰</span><span data-i18n="nav_revenue">Revenue Dashboard</span></button>
+            <button class="sidebar__nav-item" data-slide="3"><span class="sidebar__nav-icon" aria-hidden="true">🛒</span><span data-i18n="nav_sales">Sales Performance</span></button>
+            <button class="sidebar__nav-item" data-slide="4"><span class="sidebar__nav-icon" aria-hidden="true">👥</span><span data-i18n="nav_customers">Customer Analytics</span></button>
+            <button class="sidebar__nav-item" data-slide="5"><span class="sidebar__nav-icon" aria-hidden="true">⚙️</span><span data-i18n="nav_operations">Operations</span></button>
+            <button class="sidebar__nav-item" data-slide="6"><span class="sidebar__nav-icon" aria-hidden="true">💼</span><span data-i18n="nav_financial">Financial Overview</span></button>
+            <button class="sidebar__nav-item" data-slide="7"><span class="sidebar__nav-icon" aria-hidden="true">💡</span><span data-i18n="nav_insights">Strategic Insights</span></button>
+            <button class="sidebar__nav-item" data-slide="8"><span class="sidebar__nav-icon" aria-hidden="true">✅</span><span data-i18n="nav_decision">Decision & Action</span></button>
             <!-- Separator and action buttons moved here from footer -->
             <div class="sidebar__nav-separator"></div>
-            <button class="sidebar__action-btn" id="btnTheme" title="Toggle Dark/Light Mode"><span class="action-icon">🌓</span> <span data-i18n="btn_theme">Toggle Theme</span></button>
-            <button class="sidebar__action-btn" id="btnFullscreen" title="Fullscreen (F)"><span class="action-icon">⛶</span> <span data-i18n="btn_fullscreen">Fullscreen</span></button>
-            <button class="sidebar__action-btn" id="btnExport" title="Export / Print (E)"><span class="action-icon">📄</span> <span data-i18n="btn_export">Export / Print</span></button>
-            <button class="sidebar__action-btn" id="btnLang" title="تبديل اللغة"><span class="action-icon">🌐</span> <span data-i18n="btn_lang">العربية</span></button>
+            <div class="sidebar__actions">
+            <button class="sidebar__action-btn" id="btnTheme" title="Toggle Dark/Light Mode" data-i18n-title="title_theme"><span class="action-icon">🌓</span> <span data-i18n="btn_theme">Toggle Theme</span></button>
+            <button class="sidebar__action-btn" id="btnFullscreen" title="Fullscreen (F)" data-i18n-title="title_fullscreen"><span class="action-icon">⛶</span> <span data-i18n="btn_fullscreen">Fullscreen</span></button>
+            <button class="sidebar__action-btn" id="btnExport" title="Export / Print (E)" data-i18n-title="title_export"><span class="action-icon">📄</span> <span data-i18n="btn_export">Export / Print</span></button>
+            <button class="sidebar__action-btn" id="btnLang" title="Switch language" data-i18n-title="title_lang"><span class="action-icon">🌐</span> <span data-i18n="btn_lang">العربية</span></button>
+                    </div>
         </nav>
         <div class="sidebar__footer">
+            <div class="sidebar__counter"><span data-i18n="slide_label">Slide</span><span dir="ltr" id="slideCounter">1 / 9</span></div>
             <div class="sidebar__progress"><div class="sidebar__progress-fill" id="progressFill" style="width:11%"></div></div>
         </div>
     </aside>
@@ -1282,19 +1263,19 @@
                     <div class="glass-card__header"><span class="glass-card__title" data-i18n="chart_risk">Risk Indicators</span></div>
                     <div class="progress-group" style="margin-top:8px;">
                         <div class="progress-item">
-                            <div class="progress-item__header"><span class="progress-item__name" data-i18n="risk_market">Market Risk</span><span class="progress-item__val">Low 22%</span></div>
+                            <div class="progress-item__header"><span class="progress-item__name" data-i18n="risk_market">Market Risk</span><span class="progress-item__val"><span data-i18n="level_low">Low</span> <bdi>22%</bdi></span></div>
                             <div class="progress-bar"><div class="progress-bar__fill green" style="width:22%"></div></div>
                         </div>
                         <div class="progress-item">
-                            <div class="progress-item__header"><span class="progress-item__name" data-i18n="risk_operational">Operational Risk</span><span class="progress-item__val">Moderate 48%</span></div>
+                            <div class="progress-item__header"><span class="progress-item__name" data-i18n="risk_operational">Operational Risk</span><span class="progress-item__val"><span data-i18n="level_moderate">Moderate</span> <bdi>48%</bdi></span></div>
                             <div class="progress-bar"><div class="progress-bar__fill amber" style="width:48%"></div></div>
                         </div>
                         <div class="progress-item">
-                            <div class="progress-item__header"><span class="progress-item__name" data-i18n="risk_currency">Currency Exposure</span><span class="progress-item__val">Elevated 61%</span></div>
+                            <div class="progress-item__header"><span class="progress-item__name" data-i18n="risk_currency">Currency Exposure</span><span class="progress-item__val"><span data-i18n="level_elevated">Elevated</span> <bdi>61%</bdi></span></div>
                             <div class="progress-bar"><div class="progress-bar__fill amber" style="width:61%"></div></div>
                         </div>
                         <div class="progress-item">
-                            <div class="progress-item__header"><span class="progress-item__name" data-i18n="risk_credit">Credit Risk</span><span class="progress-item__val">Low 15%</span></div>
+                            <div class="progress-item__header"><span class="progress-item__name" data-i18n="risk_credit">Credit Risk</span><span class="progress-item__val"><span data-i18n="level_low">Low</span> <bdi>15%</bdi></span></div>
                             <div class="progress-bar"><div class="progress-bar__fill green" style="width:15%"></div></div>
                         </div>
                     </div>
@@ -1390,6 +1371,9 @@
                     btn_fullscreen: "Fullscreen",
                     btn_export: "Export / Print",
                     btn_lang: "العربية",
+                    doc_title: "Executive Business Presentation | Q4 2025", title_theme: "Toggle Dark/Light Mode", title_fullscreen: "Fullscreen (F)", title_export: "Export / Print (E)", title_lang: "Switch language", title_menu: "Menu", slide_label: "Slide",
+                    toast_dark: "🌙 Dark Mode", toast_light: "☀️ Light Mode", toast_fs: "📺 Fullscreen mode", toast_fs_exit: "Exited fullscreen", toast_fs_na: "Fullscreen not supported", toast_print: "📄 Opening print dialog...",
+                    level_low: "Low", level_moderate: "Moderate", level_elevated: "Elevated", chart_label_q1f: "Q1 (F)", chart_label_q2f: "Q2 (F)",
                     section_01: "Section 01",
                     slide_summary_title: "Executive Summary",
                     badge_live: "● Live Data",
@@ -1559,6 +1543,9 @@
                     btn_fullscreen: "ملء الشاشة",
                     btn_export: "تصدير / طباعة",
                     btn_lang: "English",
+                    doc_title: "العرض التنفيذي للأعمال | الربع الرابع 2025", title_theme: "تبديل الوضع الداكن/الفاتح", title_fullscreen: "ملء الشاشة (F)", title_export: "تصدير / طباعة (E)", title_lang: "تبديل اللغة", title_menu: "القائمة", slide_label: "الشريحة",
+                    toast_dark: "🌙 الوضع الداكن", toast_light: "☀️ الوضع الفاتح", toast_fs: "📺 وضع ملء الشاشة", toast_fs_exit: "تم الخروج من ملء الشاشة", toast_fs_na: "ملء الشاشة غير مدعوم", toast_print: "📄 جارٍ فتح نافذة الطباعة...",
+                    level_low: "منخفض", level_moderate: "متوسط", level_elevated: "مرتفع", chart_label_q1f: "ر1 (متوقع)", chart_label_q2f: "ر2 (متوقع)",
                     section_01: "القسم 01",
                     slide_summary_title: "الملخص التنفيذي",
                     badge_live: "● بيانات حية",
@@ -1608,7 +1595,7 @@
                     funnel_leads: "العملاء المحتملون",
                     funnel_opps: "الفرص",
                     funnel_proposals: "العروض",
-                    funnel_won: "مكتملة",
+                    funnel_won: "مكتسبة",
                     chart_retention: "الاحتفاظ والنمو",
                     kpi_retention: "معدل الاحتفاظ",
                     kpi_retention_delta: "▲ +3.2 نقطة",
@@ -1714,76 +1701,42 @@
                 }
             };
 
+            const MONTHS = {
+                en: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                ar: ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر']
+            };
+            const REGION_NAMES = {
+                en: { use: 'US East', usw: 'US West', ca: 'Canada', usc: 'US Central', uk: 'UK', de: 'Germany', fr: 'France', nordics: 'Nordics', uae: 'UAE', jp: 'Japan', au: 'Australia', sg: 'Singapore', in: 'India', kr: 'Korea' },
+                ar: { use: 'شرق الولايات المتحدة', usw: 'غرب الولايات المتحدة', ca: 'كندا', usc: 'وسط الولايات المتحدة', uk: 'المملكة المتحدة', de: 'ألمانيا', fr: 'فرنسا', nordics: 'دول الشمال', uae: 'الإمارات', jp: 'اليابان', au: 'أستراليا', sg: 'سنغافورة', in: 'الهند', kr: 'كوريا' }
+            };
             function getLang() { return document.documentElement.lang || 'en'; }
+            function tr(k) { return (translations[getLang()] || translations.en)[k] || k; }
 
-            function setLang(lang) {
-                document.documentElement.lang = lang;
-                localStorage.setItem('apex-lang', lang);
-                document.body.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            function setLang(lang, silent) {
+                const root = document.documentElement;
+                root.lang = lang;
+                root.dir = lang === 'ar' ? 'rtl' : 'ltr';
+                try { localStorage.setItem('apex-lang', lang); } catch (e) {}
                 applyTranslations(lang);
+                document.title = tr('doc_title');
                 updateChartLanguage(lang);
-                const btnLangSpan = document.querySelector('#btnLang span[data-i18n="btn_lang"]');
-                if (btnLangSpan) btnLangSpan.textContent = lang === 'ar' ? 'English' : 'العربية';
-                showToast(lang === 'ar' ? 'تم تغيير اللغة إلى العربية' : 'Language switched to English');
+                if (!silent) showToast(lang === 'ar' ? 'تم تغيير اللغة إلى العربية' : 'Language switched to English');
             }
 
             function applyTranslations(lang) {
                 const t = translations[lang] || translations.en;
                 document.querySelectorAll('[data-i18n]').forEach(el => {
-                    const key = el.getAttribute('data-i18n');
-                    if (t[key] !== undefined) {
-                        if (/<[a-z][\s\S]*>/i.test(t[key])) {
-                            el.innerHTML = t[key];
-                        } else {
-                            el.textContent = t[key];
-                        }
-                    }
+                    const v = t[el.getAttribute('data-i18n')];
+                    if (v === undefined) return;
+                    if (/<[a-z][\s\S]*>/i.test(v)) el.innerHTML = v; else el.textContent = v;
+                });
+                document.querySelectorAll('[data-i18n-title]').forEach(el => {
+                    const v = t[el.getAttribute('data-i18n-title')];
+                    if (v) { el.title = v; el.setAttribute('aria-label', v); }
                 });
             }
 
-            function updateChartLanguage(lang) {
-                const t = translations[lang] || translations.en;
-                const chartLabelMap = {
-                    'bizOverview': { datasets: [{ label: t.chart_label_revenue }, { label: t.chart_label_forecast }],
-                        labels: [t.chart_label_q1, t.chart_label_q2, t.chart_label_q3, t.chart_label_q4] },
-                    'bizUnits': { datasets: [{ label: t.chart_label_revenue + ' ($M)' }], labels: [t.chart_label_enterprise,
-                            t.chart_label_midmarket, t.chart_label_smb, t.chart_label_partner
-                        ] },
-                    'revenueLine': { datasets: [{ label: t.chart_label_2024 }, { label: t.chart_label_2025 }], },
-                    'revenueBar': { datasets: [{ label: t.chart_label_revenue + ' ($M)' }], labels: [t.chart_label_saas,
-                            t.chart_label_services, t.chart_label_hardware, t.chart_label_support
-                        ] },
-                    'salesRegional': { datasets: [{ label: t.chart_label_sales + ' ($M)' }], labels: [t.chart_label_na,
-                            t.chart_label_emea, t.chart_label_apac, t.chart_label_latam, t.chart_label_mena
-                        ] },
-                    'salesCategory': { datasets: [{ label: '' }], labels: [t.chart_label_enterprise_sw,
-                            t.chart_label_cloud, t.chart_label_prof_svcs, t.chart_label_hw, t.chart_label_support_svc
-                        ] },
-                    'retention': { datasets: [{ label: t.chart_label_retention }, { label: t.chart_label_industry_avg }], },
-                    'deptPerf': { datasets: [{ label: t.chart_label_revenue }], labels: [t.chart_label_sales,
-                            t.chart_label_marketing, t.chart_label_engineering, t.chart_label_support_dept,
-                            t.chart_label_finance, t.chart_label_hr
-                        ] },
-                    'financial': { datasets: [{ label: t.chart_label_profit }, { label: t.chart_label_expenses }, { label: t
-                                .chart_label_forecast_profit }], labels: [t.chart_label_q1, t.chart_label_q2, t.chart_label_q3,
-                            t.chart_label_q4, 'Q1F', 'Q2F'
-                        ] }
-                };
-                Object.keys(chartLabelMap).forEach(chartKey => {
-                    const chart = chartInstances[chartKey];
-                    if (!chart) return;
-                    const map = chartLabelMap[chartKey];
-                    if (map.labels) chart.data.labels = map.labels;
-                    if (map.datasets) {
-                        map.datasets.forEach((ds, i) => {
-                            if (chart.data.datasets[i] && ds.label !== undefined) {
-                                chart.data.datasets[i].label = ds.label;
-                            }
-                        });
-                    }
-                    chart.update('none');
-                });
-            }
+            function updateChartLanguage() { rebuildCharts(); }
 
             // ===== STATE & CORE LOGIC =====
             let currentSlide = 0;
@@ -1793,6 +1746,7 @@
             const slideEls = document.querySelectorAll('.slide');
             const navItems = document.querySelectorAll('.sidebar__nav-item');
             const progressFill = document.getElementById('progressFill');
+            const slideCounter = document.getElementById('slideCounter');
             const body = document.body;
             const html = document.documentElement;
 
@@ -1800,25 +1754,25 @@
 
             function setTheme(theme) {
                 html.setAttribute('data-theme', theme);
-                localStorage.setItem('apex-theme', theme);
+                try { localStorage.setItem('apex-theme', theme); } catch (e) {}
                 updateAllChartThemes();
-                showToast(theme === 'dark' ? '🌙 Dark Mode' : '☀️ Light Mode');
+                showToast(tr(theme === 'dark' ? 'toast_dark' : 'toast_light'));
             }
 
             function toggleTheme() { setTheme(getTheme() === 'dark' ? 'light' : 'dark'); }
             const savedTheme = localStorage.getItem('apex-theme');
-            if (savedTheme) setTheme(savedTheme);
+            /* الوضع المحفوظ يُطبَّق مبكرًا في <head> لتفادي الوميض */
 
             function navigateTo(index) {
                 if (isTransitioning || index === currentSlide || index < 0 || index >= totalSlides) return;
                 isTransitioning = true;
                 const leaving = slideEls[currentSlide];
                 const entering = slideEls[index];
-                leaving.classList.remove('active');
+                leaving.classList.remove('active'); leaving.inert = true; entering.inert = false;
                 entering.classList.add('active');
                 currentSlide = index;
-                navItems.forEach((item, i) => item.classList.toggle('active', i === index));
-                progressFill.style.width = ((index + 1) / totalSlides * 100) + '%';
+                navItems.forEach((item, i) => { item.classList.toggle('active', i === index); if (i === index) item.setAttribute('aria-current', 'page'); else item.removeAttribute('aria-current'); });
+                progressFill.style.width = ((index + 1) / totalSlides * 100) + '%'; slideCounter.textContent = (index + 1) + ' / ' + totalSlides;
                 animateCountersInSlide(entering);
                 entering.scrollTop = 0;
                 setTimeout(() => { isTransitioning = false; }, 520);
@@ -1867,31 +1821,56 @@
             }
 
             function formatNum(num) {
-                if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
-                if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
+                if (num >= 1000) return Math.round(num).toLocaleString('en-US');
                 return num.toFixed(1);
             }
+
+            const menuBtn = document.getElementById('btnMenu');
+            function setMenu(open) {
+                body.classList.toggle('sidebar-open', open);
+                menuBtn.setAttribute('aria-expanded', open);
+                menuBtn.textContent = open ? '✕' : '☰';
+                if (open) { const a = document.querySelector('.sidebar__nav-item.active'); if (a) a.focus({ preventScroll: true }); }
+            }
+            menuBtn.addEventListener('click', () => setMenu(!body.classList.contains('sidebar-open')));
+            document.getElementById('sidebarBackdrop').addEventListener('click', () => setMenu(false));
+            // السحب باتجاه حافة الشاشة يغلق القائمة
+            let touchX = null;
+            const sidebarEl = document.getElementById('sidebar');
+            sidebarEl.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
+            sidebarEl.addEventListener('touchend', e => {
+                if (touchX === null) return;
+                const dx = e.changedTouches[0].clientX - touchX; touchX = null;
+                const rtl = getLang() === 'ar';
+                if ((rtl && dx > 70) || (!rtl && dx < -70)) setMenu(false);
+            }, { passive: true });
 
             document.getElementById('sidebarNav').addEventListener('click', (e) => {
                 const item = e.target.closest('.sidebar__nav-item');
                 if (!item) return;
                 const idx = parseInt(item.getAttribute('data-slide'));
-                if (!isNaN(idx)) navigateTo(idx);
+                if (!isNaN(idx)) { navigateTo(idx); setMenu(false); }
             });
 
             document.addEventListener('keydown', (e) => {
                 if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.isContentEditable)
                     return;
+                if (e.ctrlKey || e.metaKey || e.altKey) return;
                 switch (e.key) {
                     case 'ArrowRight':
-                    case 'ArrowDown':
+                    case 'ArrowLeft': {
                         e.preventDefault();
-                        navigateTo(Math.min(currentSlide + 1, totalSlides - 1));
+                        const forward = (e.key === 'ArrowRight') !== (getLang() === 'ar');
+                        navigateTo(currentSlide + (forward ? 1 : -1));
                         break;
-                    case 'ArrowLeft':
-                    case 'ArrowUp':
-                        e.preventDefault();
-                        navigateTo(Math.max(currentSlide - 1, 0));
+                    }
+                    case 'PageDown':
+                        e.preventDefault(); navigateTo(currentSlide + 1); break;
+                    case 'PageUp':
+                        e.preventDefault(); navigateTo(currentSlide - 1); break;
+                    case 'm':
+                    case 'M':
+                        setMenu(!body.classList.contains('sidebar-open'));
                         break;
                     case 'f':
                     case 'F':
@@ -1909,8 +1888,9 @@
                             exportPresentation(); }
                         break;
                     case 'Escape':
+                        if (body.classList.contains('sidebar-open')) { setMenu(false); break; }
                         if (document.fullscreenElement) { document.exitFullscreen();
-                            showToast('Exited fullscreen'); }
+                            showToast(tr('toast_fs_exit')); }
                         break;
                     default:
                         if (e.key >= '1' && e.key <= '9') { e.preventDefault();
@@ -1918,22 +1898,38 @@
                 }
             });
 
+            function fsElement() { return document.fullscreenElement || document.webkitFullscreenElement; }
+
             function toggleFullscreen() {
-                if (!document.fullscreenElement) {
-                    document.documentElement.requestFullscreen().then(() => {
-                        body.classList.add('fullscreen');
-                        showToast('📺 Fullscreen mode');
-                    }).catch(() => showToast('Fullscreen not supported'));
-                } else {
-                    document.exitFullscreen().then(() => body.classList.remove('fullscreen'));
+                const root = document.documentElement;
+                const request = root.requestFullscreen || root.webkitRequestFullscreen;
+                const exit = document.exitFullscreen || document.webkitExitFullscreen;
+                setMenu(false);
+                if (fsElement() || body.classList.contains('fullscreen')) {
+                    if (fsElement() && exit) exit.call(document);
+                    body.classList.remove('fullscreen');
+                    showToast(tr('toast_fs_exit'));
+                    return;
                 }
+                // عند عدم دعم الواجهة (بعض المتصفحات/المعاينات) نستخدم وضع ملء داخل الصفحة
+                const fallback = () => { body.classList.add('fullscreen'); showToast(tr('toast_fs')); };
+                if (!request) { fallback(); return; }
+                try {
+                    const p = request.call(root);
+                    if (p && p.catch) p.catch(fallback);
+                } catch (err) { fallback(); }
             }
-            document.addEventListener('fullscreenchange', () => {
-                if (!document.fullscreenElement) body.classList.remove('fullscreen');
-            });
+            function onFullscreenChange() {
+                const on = !!fsElement();
+                body.classList.toggle('fullscreen', on);
+                if (on) showToast(tr('toast_fs'));
+                setTimeout(() => Object.values(chartInstances).forEach(ch => ch && ch.resize && ch.resize()), 200);
+            }
+            document.addEventListener('fullscreenchange', onFullscreenChange);
+            document.addEventListener('webkitfullscreenchange', onFullscreenChange);
 
             function exportPresentation() {
-                showToast('📄 Opening print dialog...');
+                showToast(tr('toast_print'));
                 setTimeout(() => window.print(), 400);
             }
 
@@ -1983,14 +1979,27 @@
                 };
             }
 
-            function baseFont() { return { family: "'Inter','Segoe UI',system-ui,sans-serif", size: 11 }; }
+            function baseFont() { return { family: getLang() === 'ar' ? "'Cairo','Tajawal','Segoe UI',Tahoma,sans-serif" : "'Inter','Segoe UI',system-ui,sans-serif", size: 11 }; }
+            function chartAnimation() { return animateCharts ? { duration: 800, easing: 'easeOutQuart' } : false; }
 
             function baseOptions(extra = {}) {
+                // indexAxis كان يُمرَّر خطأً داخل plugins فلا يعمل؛ نفصله هنا
+                const { indexAxis, ...pluginExtra } = extra;
+                const o = buildBase(pluginExtra);
+                const rtl = getLang() === 'ar';
+                if (indexAxis) { o.indexAxis = indexAxis; o.scales.x.beginAtZero = true; }
+                o.plugins.legend.rtl = rtl; o.plugins.legend.textDirection = rtl ? 'rtl' : 'ltr';
+                o.plugins.tooltip.rtl = rtl; o.plugins.tooltip.textDirection = rtl ? 'rtl' : 'ltr';
+                if (rtl) { o.scales.x.reverse = true; o.scales.y.position = 'right'; }
+                return o;
+            }
+
+            function buildBase(extra = {}) {
                 const c = getChartColors();
                 return {
                     responsive: true,
                     maintainAspectRatio: false,
-                    animation: { duration: 800, easing: 'easeOutQuart' },
+                    animation: chartAnimation(),
                     plugins: {
                         legend: { labels: { color: c.text, font: { ...baseFont(), size: 10 },
                                 usePointStyle: true, pointStyleWidth: 8, padding: 16 } },
@@ -2061,9 +2070,7 @@
                     chartInstances['revenueLine'] = new Chart(ctx3, {
                         type: 'line',
                         data: {
-                            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct',
-                                'Nov', 'Dec'
-                            ],
+                            labels: MONTHS[getLang()] || MONTHS.en,
                             datasets: [
                                 { label: t.chart_label_2024, data: [18, 20, 22, 24, 23, 25, 27, 28, 26, 29,
                                         30, 31
@@ -2130,7 +2137,7 @@
                         options: {
                             responsive: true,
                             maintainAspectRatio: false,
-                            animation: { duration: 800, easing: 'easeOutQuart' },
+                            animation: chartAnimation(),
                             plugins: {
                                 legend: { labels: { color: c.text, font: { ...baseFont(), size: 10 },
                                         usePointStyle: true, pointStyleWidth: 8, padding: 12 } },
@@ -2181,7 +2188,7 @@
                         type: 'line',
                         data: {
                             labels: [t.chart_label_q1, t.chart_label_q2, t.chart_label_q3, t.chart_label_q4,
-                                'Q1F', 'Q2F'
+                                t.chart_label_q1f, t.chart_label_q2f
                             ],
                             datasets: [
                                 { label: t.chart_label_profit, data: [52, 58, 62, 67.8, 71, 76],
@@ -2204,74 +2211,60 @@
                 }
             }
 
-            function updateAllChartThemes() {
-                const c = getChartColors();
-                Object.values(chartInstances).forEach(chart => {
-                    if (!chart || !chart.options) return;
-                    if (chart.options.scales) {
-                        ['x', 'y'].forEach(axis => {
-                            if (chart.options.scales[axis]) {
-                                chart.options.scales[axis].ticks.color = c.text;
-                                chart.options.scales[axis].grid.color = c.grid;
-                                chart.options.scales[axis].border.color = c.grid;
-                            }
-                        });
-                    }
-                    if (chart.options.plugins?.legend?.labels) {
-                        chart.options.plugins.legend.labels.color = c.text;
-                    }
-                    if (chart.options.plugins?.tooltip) {
-                        const isDark = getTheme() === 'dark';
-                        chart.options.plugins.tooltip.backgroundColor = isDark ?
-                            'rgba(18,24,38,0.95)' : 'rgba(255,255,255,0.95)';
-                        chart.options.plugins.tooltip.titleColor = c.text;
-                        chart.options.plugins.tooltip.bodyColor = c.text;
-                    }
-                    chart.update('none');
-                });
-            }
+            let animateCharts = true;
+            let revenuePeriod = 'monthly', salesRegion = 'all';
 
-            function updateRevenueChart(period) {
+            function rebuildCharts() {
+                animateCharts = false;
+                Object.values(chartInstances).forEach(ch => ch && ch.destroy());
+                Object.keys(chartInstances).forEach(k => delete chartInstances[k]);
+                createAllCharts();
+                updateRevenueChart(null, false);
+                updateSalesChart(null, false);
+                animateCharts = true;
+            }
+            function updateAllChartThemes() { rebuildCharts(); }
+
+            function updateRevenueChart(period, animate = true) {
+                revenuePeriod = period || revenuePeriod;
                 const chart = chartInstances['revenueLine'];
                 if (!chart) return;
-                const datasets = {
-                    monthly: { labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov',
-                            'Dec'
-                        ], data2024: [18, 20, 22, 24, 23, 25, 27, 28, 26, 29, 30, 31], data2025: [21, 22, 24, 25,
-                            26, 28, 29, 30, 28, 31, 33, 35
-                        ] },
-                    quarterly: { labels: ['Q1', 'Q2', 'Q3', 'Q4'], data2024: [60, 72, 81, 90], data2025: [67, 79, 87,
-                            99
-                        ] },
-                    yearly: { labels: ['2021', '2022', '2023', '2024', '2025'], data2024: [180, 210, 250, 303, 340],
-                        data2025: [195, 225, 268, 320, 360] },
-                };
-                const d = datasets[period] || datasets['monthly'];
+                const lang = getLang(), t = translations[lang] || translations.en;
+                const d = {
+                    monthly: { labels: MONTHS[lang] || MONTHS.en, a: [18, 20, 22, 24, 23, 25, 27, 28, 26, 29, 30, 31], b: [21, 22, 24, 25, 26, 28, 29, 30, 28, 31, 33, 35] },
+                    quarterly: { labels: [t.chart_label_q1, t.chart_label_q2, t.chart_label_q3, t.chart_label_q4], a: [60, 72, 81, 90], b: [67, 79, 87, 99] },
+                    yearly: { labels: ['2021', '2022', '2023', '2024', '2025'], a: [180, 210, 250, 303, 340], b: [195, 225, 268, 320, 360] },
+                }[revenuePeriod];
+                const yearly = revenuePeriod === 'yearly';
                 chart.data.labels = d.labels;
-                chart.data.datasets[0].data = period === 'yearly' ? d.data2024 : d.data2024;
-                chart.data.datasets[1].data = period === 'yearly' ? d.data2025 : d.data2025;
-                chart.update('active');
+                chart.data.datasets[0].data = d.a;
+                chart.data.datasets[1].data = d.b;
+                chart.data.datasets[0].label = yearly ? t.chart_label_revenue : t.chart_label_2024;
+                chart.data.datasets[1].label = yearly ? t.chart_label_forecast : t.chart_label_2025;
+                chart.update(animate ? 'active' : 'none');
             }
 
-            function updateSalesChart(region) {
+            function updateSalesChart(region, animate = true) {
+                salesRegion = region || salesRegion;
                 const chart = chartInstances['salesRegional'];
                 if (!chart) return;
-                const regionData = {
-                    all: { labels: ['N. America', 'EMEA', 'APAC', 'LATAM', 'MENA'], data: [128, 76, 52, 18, 10.7] },
-                    na: { labels: ['US East', 'US West', 'Canada', 'US Central'], data: [52, 38, 22, 16] },
-                    emea: { labels: ['UK', 'Germany', 'France', 'Nordics', 'UAE'], data: [28, 22, 14, 8, 4] },
-                    apac: { labels: ['Japan', 'Australia', 'Singapore', 'India', 'Korea'], data: [18, 14, 10, 7, 3] },
-                };
-                const d = regionData[region] || regionData['all'];
+                const lang = getLang(), t = translations[lang] || translations.en, n = REGION_NAMES[lang] || REGION_NAMES.en;
+                const d = {
+                    all: { labels: [t.chart_label_na, t.chart_label_emea, t.chart_label_apac, t.chart_label_latam, t.chart_label_mena], data: [128, 76, 52, 18, 10.7] },
+                    na: { labels: [n.use, n.usw, n.ca, n.usc], data: [52, 38, 22, 16] },
+                    emea: { labels: [n.uk, n.de, n.fr, n.nordics, n.uae], data: [28, 22, 14, 8, 4] },
+                    apac: { labels: [n.jp, n.au, n.sg, n.in, n.kr], data: [18, 14, 10, 7, 3] },
+                }[salesRegion];
                 chart.data.labels = d.labels;
                 chart.data.datasets[0].data = d.data;
-                chart.update('active');
+                chart.update(animate ? 'active' : 'none');
             }
 
             function init() {
-                const savedLang = localStorage.getItem('apex-lang') || 'en';
-                setLang(savedLang);
+                const savedLang = document.documentElement.lang || 'en';
+                setLang(savedLang, true);
                 createAllCharts();
+                slideEls.forEach((el, i) => { el.inert = i !== 0; });
                 const firstSlide = slideEls[0];
                 if (firstSlide && firstSlide.classList.contains('active')) {
                     animateCountersInSlide(firstSlide);
